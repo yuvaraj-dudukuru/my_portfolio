@@ -1,0 +1,141 @@
+/* Custom enhancements for modern, minimal design */
+
+/* Improved typography and spacing */
+.about .container .about-content p {
+  line-height: 1.8;
+  margin-top: 2rem;
+}
+
+.about .container .about-content p:first-of-type {
+  margin-top: 0;
+}
+
+/* Better project box content spacing */
+.project-box__content h5 {
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* Skills section improvements */
+.service-item p {
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Better mobile responsiveness for skills */
+@media screen and (max-width: 768px) {
+  .service-item {
+    margin-bottom: 2rem;
+  }
+  
+  .project-box__content h5 {
+    font-size: 0.85em;
+  }
+}
+
+/* Improved readability */
+body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Better contrast for links */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--mainColor);
+}
+
+/* Enhanced project boxes */
+.project-box {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-box:hover {
+  transform: translateY(-4px);
+}
+
+/* Better form styling */
+.contact .container form input,
+.contact .container form textarea {
+  transition: border-color 0.2s ease;
+}
+
+.contact .container form input:focus,
+.contact .container form textarea:focus {
+  border-bottom-color: var(--mainColor);
+}
+
+/* Improved footer spacing */
+.footer {
+  padding-top: 6rem;
+}
+
+/* Better section spacing */
+section {
+  padding: 8rem 0;
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding: 4rem 0;
+  }
+}
+
+/* Skills categorization styling */
+.more-about-text h4 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.more-about-text .skills {
+  margin-top: 1rem;
+}
+
+/* Improved about section spacing */
+.about {
+  padding: 6rem 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  .about {
+    padding: 4rem 1.5rem;
+  }
+}
+
+/* Better project grid on mobile */
+@media screen and (max-width: 600px) {
+  .project-item-container {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
+  
+  .project-box {
+    height: auto;
+    min-height: 16rem;
+  }
+}
+
+/* Improved contact section */
+.contact .container .sub {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Better readability for long text */
+.about-content p,
+.more-about-text p {
+  max-width: 65ch;
+}
+
+@media screen and (max-width: 768px) {
+  .about-content p,
+  .more-about-text p {
+    max-width: 100%;
+  }
+}
+
