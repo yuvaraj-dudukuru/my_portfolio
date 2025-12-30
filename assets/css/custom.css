@@ -1,5 +1,104 @@
 /* Custom enhancements for modern, minimal design */
 
+/* Hero Section Styles */
+.hero {
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  background: var(--darkBlue);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--whiteLight);
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.875rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--mainColor);
+  color: var(--white);
+  border: 2px solid var(--mainColor);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--mainColor);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 6rem 1.5rem 4rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+}
+
 /* Improved typography and spacing */
 .about .container .about-content p {
   line-height: 1.8;
@@ -139,3 +238,50 @@ section {
   }
 }
 
+/* Enhanced project box content with description */
+.project-box__content p {
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-size: 0.85em;
+  color: var(--secondColor);
+}
+
+/* Skills section - 4 columns on desktop, responsive grid */
+.service-item-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .service-item-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* CSS Variables for consistent theming */
+:root {
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --border-radius: 4px;
+  --transition-speed: 0.3s;
+}
+
+/* Mobile-first responsive improvements */
+@media screen and (max-width: 600px) {
+  .project-box__content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .project-box__content h5 {
+    font-size: 0.85em;
+  }
+  
+  .project-box__content p {
+    font-size: 0.8em;
+  }
+}
