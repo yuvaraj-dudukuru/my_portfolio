@@ -181,6 +181,53 @@ a:hover {
   padding-top: 6rem;
 }
 
+.footer-tagline {
+  text-align: center;
+  margin: 2rem 0 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-tagline p {
+  color: var(--whiteLight);
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.footer-links.social-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-links.social-links p {
+  margin: 0;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--whiteLight);
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--mainColor);
+}
+
+.footer-links a ion-icon {
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-links.social-links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
 /* Better section spacing */
 section {
   padding: 8rem 0;
@@ -232,6 +279,74 @@ section {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+/* Quick Contact Buttons */
+.quick-contact {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.quick-contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.email-btn {
+  background: var(--mainColor);
+  color: var(--white);
+  border-color: var(--mainColor);
+}
+
+.email-btn:hover {
+  background: transparent;
+  color: var(--mainColor);
+  transform: translateY(-2px);
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: var(--white);
+  border-color: #25D366;
+}
+
+.whatsapp-btn:hover {
+  background: transparent;
+  color: #25D366;
+  transform: translateY(-2px);
+}
+
+.quick-contact-btn ion-icon {
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 600px) {
+  .quick-contact {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .quick-contact-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Contact Form Improvements */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Better readability for long text */
@@ -247,7 +362,55 @@ section {
   }
 }
 
+/* Enhanced project box with images */
+.project-box__image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+  background: var(--darkBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.project-box__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-box:hover .project-box__image img {
+  transform: scale(1.05);
+}
+
+/* Project tech tags */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--secondColor);
+  font-weight: 500;
+}
+
 /* Enhanced project box content with description */
+.project-box__content {
+  padding: 0 0.5rem;
+}
+
 .project-box__content p {
   margin-top: 1rem;
   line-height: 1.6;
@@ -255,17 +418,81 @@ section {
   color: var(--secondColor);
 }
 
-/* Skills section - 4 columns on desktop, responsive grid */
-.service-item-container {
+/* Skills Section - New Grid Layout with Tags */
+.skills-intro {
+  color: var(--whiteLight);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.skill-category {
+  background: var(--darkBlue);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+  border-color: var(--mainColor);
+  transform: translateY(-4px);
+}
+
+.skill-category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.skill-category-title ion-icon {
+  font-size: 1.5rem;
+  color: var(--mainColor);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--whiteLight);
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  background: var(--mainColor);
+  border-color: var(--mainColor);
+  color: var(--white);
+  transform: translateY(-2px);
 }
 
 @media screen and (max-width: 768px) {
-  .service-item-container {
+  .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .skill-category {
+    padding: 1.5rem;
   }
 }
 
@@ -292,5 +519,61 @@ section {
   
   .project-box__content p {
     font-size: 0.8em;
+  }
+  
+  .project-box__image {
+    height: 150px;
+  }
+}
+
+/* Accessibility Improvements */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--mainColor);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--mainColor);
+  color: var(--white);
+  padding: 12px 24px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--white);
+  outline-offset: 2px;
+}
+
+/* Improved semantic HTML spacing */
+main {
+  position: relative;
+}
+
+/* Better image loading */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Print styles */
+@media print {
+  .intro,
+  .slider,
+  .slider-2,
+  .cursor-effect,
+  .toggle-container,
+  .quick-contact {
+    display: none;
   }
 }
