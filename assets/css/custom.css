@@ -1,6 +1,15 @@
 /* Custom enhancements for modern, minimal design */
 
 /* Hero Section Styles */
+
+
+
+.intro-btn{
+  border-radius: 200px;
+}
+
+
+
 .hero {
   padding: 8rem 2rem 6rem;
   text-align: center;
