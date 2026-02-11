@@ -34,12 +34,14 @@ The portfolio is hosted on GitHub Pages and can be accessed at:
 To run the portfolio locally:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yuvaraj-dudukuru/my_portfolio.git
    cd my_portfolio
    ```
 
 2. Open `index.html` in your web browser, or use a local server:
+
    ```bash
    # Using Python
    python -m http.server 8000
@@ -52,20 +54,23 @@ To run the portfolio locally:
 
 ## 📁 Project Summaries
 
-### 1. ML Prediction System
-A machine learning project focused on building accurate prediction models for structured datasets. Features include data preprocessing, feature engineering, and model evaluation achieving 85%+ accuracy.
+### 1. Career Co-Pilot
 
-**Technologies**: Python, Scikit-learn, Pandas, NumPy
+An intelligent, AI-powered career advisor that generates personalized learning roadmaps based on your skills, interests, and goals. Using advanced AI (Google Gemini) and deterministic skill matching, it provides fair, transparent career recommendations with structured 4-week learning plans.
 
-### 2. Data Analysis Dashboard
-An interactive dashboard for exploring and visualizing complex datasets. Includes statistical summaries, trend analysis, and data export capabilities.
+**Technologies**: Python, Google Gemini AI, Streamlit, Pandas
 
-**Technologies**: Python, Pandas, Matplotlib, Plotly
+### 2. WhatsApp Automation
 
-### 3. Responsive Web Application
-A full-stack web application with modern responsive design, state management, and real-time API integration for dynamic data display.
+A full-stack, enterprise-ready WhatsApp automation platform designed for bulk messaging, campaign management, and AI-powered interactions.
 
-**Technologies**: React, JavaScript, HTML/CSS, REST APIs
+**Technologies**: Full-Stack, WhatsApp API, AI, Automation
+
+### 3. Real-time Chat Application
+
+A full-stack real-time chat application built with modern web technologies. The application demonstrates best practices for implementing real-time bidirectional communication between clients and servers.
+
+**Technologies**: Full-Stack, WebSockets, Real-time, JavaScript
 
 ## ✨ Features
 
@@ -80,13 +85,14 @@ A full-stack web application with modern responsive design, state management, an
 
 - **HTML5**: Semantic markup
 - **CSS3**: Custom styles with CSS variables and mobile-first approach
-- **JavaScript**: Vanilla JS for interactions and animations
+- **JavaScript**: Vanilla JS for interactions, WebSockets, and logic
+- **AI Integration**: Google Gemini API for intelligent features
 - **GSAP**: Smooth animations and transitions
 - **Ionicons**: Icon library for UI elements
 
 ## 📂 Project Structure
 
-```
+```text
 my_portfolio/
 ├── index.html              # Main portfolio page
 ├── about/
@@ -154,4 +160,4 @@ This is a personal portfolio, but suggestions and feedback are welcome! Feel fre
 
 ---
 
-**Built with ❤️ by an AI & Data Science student passionate about building real projects**
+### Built with ❤️ by an AI & Data Science student passionate about building real projects
