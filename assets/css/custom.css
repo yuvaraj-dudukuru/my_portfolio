@@ -159,6 +159,8 @@ a:hover {
 /* Enhanced project boxes */
 .project-box {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: auto; /* Fix overflow issue by allowing box to grow */
+  min-height: 18rem;
 }
 
 .project-box:hover {
