@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import { ToastProvider } from './context/ToastContext.jsx';
 import './index.css';
+import '../assets/css/styles.min.css';
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
 

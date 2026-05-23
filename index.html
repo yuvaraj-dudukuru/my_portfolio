@@ -30,9 +30,41 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Premier Portfolio Styles -->
+    <link rel="stylesheet" href="https://use.typekit.net/kse0maf.css" />
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/TweenMax.min.js"></script>
+    
+    <!-- IonIcons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </head>
-  <body class="bg-bg text-ink antialiased">
+  <body class="bg-bg text-ink antialiased body-wrap">
+    <!-- Intro Animation -->
+    <div class="intro" id="intro">
+      <div class="intro-text">
+        <h2 class="hide"><span class="text">Creating innovations</span></h2>
+        <h2 class="hide"><span class="text">For Everyday</span></h2>
+        <h2 class="hide"><span class="text">people.</span></h2>
+      </div>
+      <button class="intro-btn" onclick="fadeOut()">EXPLORE</button>
+    </div>
+    <div class="slider"></div>
+    <div class="slider-2"></div>
+
+    <!-- Custom Mouse Effect -->
+    <div class="cursor-effect"></div>
+
+    <!-- Main Content -->
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Premier Portfolio JS -->
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
