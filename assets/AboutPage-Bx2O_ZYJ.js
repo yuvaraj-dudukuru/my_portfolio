@@ -1,0 +1,1 @@
+import{j as s}from"./index-Dpa1dgvJ.js";import{A as t,d as a,b as o}from"./Skills-BNKmqW0R.js";function i(){return s.jsxs("div",{className:"pt-24",children:[s.jsx(t,{}),s.jsx(a,{}),s.jsx(o,{})]})}export{i as default};
