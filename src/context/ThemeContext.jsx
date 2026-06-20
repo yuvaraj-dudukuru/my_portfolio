@@ -9,8 +9,8 @@ function getInitialTheme() {
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === 'light' || stored === 'dark') return stored;
   // Default to dark per design spec; only honor system if user prefers light.
-  if (window.matchMedia?.('(prefers-color-scheme: light)').matches) return 'light';
-  return 'dark';
+  if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) return 'dark';
+  return 'light';
 }
 
 export function ThemeProvider({ children }) {

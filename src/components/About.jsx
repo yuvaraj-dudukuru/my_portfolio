@@ -26,7 +26,7 @@ export default function About() {
           >
             <p>
               I&apos;m a Computer Science undergraduate focused on{' '}
-              <span className="text-ink">AI &amp; Data Science</span>. My work
+              <span className="font-bold text-ink">AI &amp; Data Science</span>. My work
               sits at the intersection of building real software and
               understanding the math behind it — I&apos;d rather ship a small
               system that works than write another notebook that never leaves
@@ -36,7 +36,7 @@ export default function About() {
               Outside of coursework I build projects (an AI career advisor, a
               full-stack chat app, an enterprise WhatsApp automation platform),
               run a startup-in-progress, and{' '}
-              <span className="text-ink">tutor students</span> in Python, AI/ML
+              <span className="font-bold text-ink">tutor students</span> in Python, AI/ML
               and Web Development through structured training programs and 1:1
               sessions.
             </p>
@@ -64,17 +64,17 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-15%' }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-1"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-1"
           >
             {personal.stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border border-bg-border bg-bg-subtle/60 p-5"
+                className="border-2 border-ink bg-bg-raised p-5 shadow-neo transition-all duration-150 hover:shadow-none hover:translate-x-1 hover:translate-y-1"
               >
-                <p className="heading-display text-3xl font-semibold text-ink">
+                <p className="heading-display text-3xl font-bold text-ink">
                   <AnimatedCounter value={s.value} suffix={s.suffix} />
                 </p>
-                <p className="mt-1 text-sm text-ink-muted">{s.label}</p>
+                <p className="mt-1 text-sm font-medium text-ink-muted">{s.label}</p>
               </div>
             ))}
           </motion.div>

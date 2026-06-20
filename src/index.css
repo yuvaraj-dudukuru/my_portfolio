@@ -4,15 +4,11 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
     scroll-behavior: smooth;
-  }
-
-  html.light {
-    color-scheme: light;
   }
 
   body {
@@ -21,22 +17,36 @@
   }
 
   ::selection {
-    background-color: rgba(129, 140, 248, 0.3);
-    color: #fff;
+    background-color: #FFE500;
+    color: #0A0A0A;
   }
 
-  html.light body {
-    background-color: #fafafa;
-    color: #18181b;
+  /* Dark mode overrides */
+  html.dark {
+    color-scheme: dark;
   }
-
-  html.light .bg-bg { background-color: #fafafa; }
-  html.light .bg-bg-subtle { background-color: #f4f4f5; }
-  html.light .bg-bg-raised { background-color: #ffffff; }
-  html.light .text-ink { color: #18181b; }
-  html.light .text-ink-muted { color: #52525b; }
-  html.light .text-ink-subtle { color: #71717a; }
-  html.light .border-bg-border { border-color: #e4e4e7; }
+  html.dark body {
+    background-color: #111111;
+    color: #FFFBF0;
+  }
+  html.dark .bg-bg         { background-color: #111111; }
+  html.dark .bg-bg-subtle  { background-color: #1A1A1A; }
+  html.dark .bg-bg-raised  { background-color: #222222; }
+  html.dark .text-ink      { color: #FFFBF0; }
+  html.dark .text-ink-muted  { color: #C0B89A; }
+  html.dark .text-ink-subtle { color: #807060; }
+  html.dark .border-bg-border { border-color: #FFFBF0; }
+  html.dark .border-ink    { border-color: #FFFBF0; }
+  html.dark .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  html.dark .gradient-text {
+    color: #FFE500;
+    -webkit-text-fill-color: #FFE500;
+    text-decoration-color: #FFE500;
+  }
 }
 
 @layer components {
@@ -57,20 +67,20 @@
     text-wrap: balance;
   }
 
+  /* Neo-brutalism: bold yellow underline instead of gradient */
   .gradient-text {
-    background: linear-gradient(135deg, #ededf3 0%, #a5b4fc 60%, #818cf8 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #0A0A0A;
+    -webkit-text-fill-color: #0A0A0A;
+    text-decoration: underline;
+    text-decoration-color: #FFE500;
+    text-decoration-thickness: 6px;
+    text-underline-offset: 5px;
   }
 
   .grid-bg {
-    background-image: linear-gradient(
-        to right,
-        rgba(129, 140, 248, 0.07) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, rgba(129, 140, 248, 0.07) 1px, transparent 1px);
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
@@ -81,18 +91,18 @@
   }
 }
 
-/* Subtle scrollbar that matches the theme */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: #F0EAD6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f1f2a;
-  border-radius: 8px;
+  background: #0A0A0A;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2a36;
+  background: #333333;
 }

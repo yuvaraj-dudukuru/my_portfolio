@@ -10,9 +10,8 @@ export default function Card({
   return (
     <Component
       className={cn(
-        'relative rounded-2xl border border-bg-border bg-bg-subtle/60 p-6 backdrop-blur-sm shadow-card transition-all duration-300',
-        hoverable &&
-          'hover:-translate-y-0.5 hover:border-accent/30 hover:bg-bg-raised hover:shadow-glow',
+        'relative border-2 border-ink bg-bg-raised p-6 shadow-neo transition-all duration-150',
+        hoverable && 'cursor-pointer hover:shadow-none hover:translate-x-1 hover:translate-y-1',
         className,
       )}
       {...rest}

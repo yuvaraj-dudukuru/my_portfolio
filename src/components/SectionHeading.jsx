@@ -21,12 +21,12 @@ export default function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p className="mb-3 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-accent">
-          <span className="h-px w-8 bg-accent/60" aria-hidden="true" />
+        <p className="mb-4 inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] text-ink">
+          <span className="h-2.5 w-8 bg-accent border border-ink" aria-hidden="true" />
           {eyebrow}
         </p>
       )}
-      <h2 className="heading-display text-balance text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.65rem]">
+      <h2 className="heading-display text-balance text-3xl font-bold leading-tight sm:text-4xl md:text-[2.65rem]">
         {title}
       </h2>
       {description && (

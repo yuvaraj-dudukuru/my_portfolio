@@ -21,7 +21,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change.
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
@@ -31,7 +30,6 @@ export default function Navbar() {
     const id = anchor.replace('#', '');
     if (location.pathname !== '/') {
       navigate('/');
-      // Defer scroll until home renders.
       setTimeout(() => scrollToId(id), 100);
     } else {
       scrollToId(id);
@@ -40,10 +38,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-bg-border bg-bg/80 backdrop-blur-md'
-          : 'border-b border-transparent'
+      className={`fixed inset-x-0 top-0 z-50 bg-bg transition-all duration-200 ${
+        scrolled ? 'border-b-2 border-ink' : 'border-b-2 border-transparent'
       }`}
     >
       <nav
@@ -53,13 +49,13 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => goAnchor(e, '#home')}
-          className="flex items-center gap-2 focus-ring rounded-md"
+          className="flex items-center gap-2.5 focus-ring rounded-sm"
           aria-label={`${personal.name} — Home`}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-bg-border bg-bg-raised heading-display text-sm font-bold gradient-text">
+          <span className="flex h-9 w-9 items-center justify-center border-2 border-ink bg-accent heading-display text-sm font-bold text-ink shadow-neo-sm">
             {personal.monogram}
           </span>
-          <span className="hidden text-sm font-semibold tracking-tight sm:inline-block">
+          <span className="hidden text-sm font-bold tracking-tight sm:inline-block">
             {personal.shortName}
           </span>
         </a>
@@ -70,7 +66,7 @@ export default function Navbar() {
               <a
                 href={l.to}
                 onClick={(e) => goAnchor(e, l.to)}
-                className="rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus-ring"
+                className="rounded-sm px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:text-ink hover:bg-bg-subtle focus-ring"
               >
                 {l.label}
               </a>
@@ -82,7 +78,7 @@ export default function Navbar() {
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="hidden h-10 w-10 items-center justify-center rounded-lg border border-bg-border bg-bg-raised text-ink-muted transition-colors hover:text-ink focus-ring sm:inline-flex"
+            className="hidden h-10 w-10 items-center justify-center border-2 border-ink bg-bg-raised text-ink shadow-neo-sm transition-all hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] focus-ring sm:inline-flex"
           >
             {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
@@ -101,7 +97,7 @@ export default function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-label="Toggle navigation menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-bg-border bg-bg-raised text-ink focus-ring md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-bg-raised text-ink shadow-neo-sm transition-all hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] focus-ring md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -114,8 +110,8 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className="border-b border-bg-border bg-bg-subtle md:hidden"
+            transition={{ duration: 0.15 }}
+            className="border-b-2 border-ink bg-bg md:hidden"
           >
             <ul className="container-x flex flex-col gap-1 py-3">
               {navLinks.map((l) => (
@@ -123,7 +119,7 @@ export default function Navbar() {
                   <a
                     href={l.to}
                     onClick={(e) => goAnchor(e, l.to)}
-                    className="block rounded-md px-3 py-2.5 text-sm text-ink-muted hover:bg-bg-raised hover:text-ink focus-ring"
+                    className="block rounded-sm px-3 py-2.5 text-sm font-medium text-ink-muted hover:bg-bg-subtle hover:text-ink focus-ring"
                   >
                     {l.label}
                   </a>
@@ -142,7 +138,7 @@ export default function Navbar() {
                 <button
                   onClick={toggle}
                   aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-bg-border bg-bg-raised text-ink-muted hover:text-ink focus-ring"
+                  className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-bg-raised text-ink shadow-neo-sm transition-all hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] focus-ring"
                 >
                   {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                 </button>

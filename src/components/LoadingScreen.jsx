@@ -7,27 +7,25 @@ export default function LoadingScreen({ subtle = false }) {
       role="status"
       aria-label="Loading"
       className={`fixed inset-0 z-[200] flex items-center justify-center bg-bg ${
-        subtle ? 'bg-opacity-60 backdrop-blur' : ''
+        subtle ? 'bg-opacity-80' : ''
       }`}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
-        className="flex flex-col items-center gap-4"
+        transition={{ duration: 0.35 }}
+        className="flex flex-col items-center gap-5"
       >
-        <div className="relative flex h-14 w-14 items-center justify-center rounded-xl border border-bg-border bg-bg-raised text-lg font-bold tracking-tight text-ink shadow-glow">
-          <span className="heading-display gradient-text">{personal.monogram}</span>
-          <span
-            aria-hidden="true"
-            className="absolute -inset-px rounded-xl bg-gradient-to-r from-accent/0 via-accent/40 to-accent/0 opacity-50 blur-sm"
-          />
+        <div className="flex h-14 w-14 items-center justify-center border-2 border-ink bg-accent shadow-neo">
+          <span className="heading-display text-sm font-bold text-ink">
+            {personal.monogram}
+          </span>
         </div>
-        <div className="h-1 w-32 overflow-hidden rounded-full bg-bg-subtle">
+        <div className="h-2 w-32 overflow-hidden border border-ink bg-bg-subtle">
           <motion.div
-            className="h-full w-1/3 rounded-full bg-gradient-to-r from-accent/40 via-accent to-accent/40"
+            className="h-full w-1/3 bg-ink"
             animate={{ x: ['-100%', '300%'] }}
-            transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}
+            transition={{ repeat: Infinity, duration: 1.1, ease: 'easeInOut' }}
           />
         </div>
       </motion.div>

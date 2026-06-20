@@ -6,21 +6,21 @@ export default {
     extend: {
       colors: {
         bg: {
-          DEFAULT: '#0a0a0f',
-          subtle: '#111118',
-          raised: '#15151d',
-          border: '#1f1f2a',
+          DEFAULT: '#FFFBF0',
+          subtle: '#F0EAD6',
+          raised: '#FFFFFF',
+          border: '#0A0A0A',
         },
         ink: {
-          DEFAULT: '#ededf3',
-          muted: '#a1a1aa',
-          subtle: '#71717a',
+          DEFAULT: '#0A0A0A',
+          muted: '#333333',
+          subtle: '#777777',
         },
         accent: {
-          DEFAULT: '#818cf8',
-          strong: '#6366f1',
-          soft: 'rgba(129, 140, 248, 0.12)',
-          glow: 'rgba(99, 102, 241, 0.35)',
+          DEFAULT: '#FFE500',
+          strong: '#F5D000',
+          soft: 'rgba(255, 229, 0, 0.2)',
+          glow: 'rgba(255, 229, 0, 0.5)',
         },
       },
       fontFamily: {
@@ -29,16 +29,17 @@ export default {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       backgroundImage: {
-        grid: 'linear-gradient(to right, rgba(129, 140, 248, 0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(129, 140, 248, 0.07) 1px, transparent 1px)',
-        'radial-fade':
-          'radial-gradient(60% 60% at 50% 0%, rgba(99, 102, 241, 0.18) 0%, rgba(10, 10, 15, 0) 70%)',
+        grid: 'linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)',
       },
       backgroundSize: {
         grid: '48px 48px',
       },
       boxShadow: {
-        glow: '0 0 0 1px rgba(129, 140, 248, 0.25), 0 20px 60px -20px rgba(99, 102, 241, 0.45)',
-        card: '0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.6)',
+        neo: '4px 4px 0px #0A0A0A',
+        'neo-sm': '3px 3px 0px #0A0A0A',
+        'neo-lg': '6px 6px 0px #0A0A0A',
+        glow: '4px 4px 0px #0A0A0A',
+        card: '4px 4px 0px #0A0A0A',
       },
       keyframes: {
         'fade-in-up': {
