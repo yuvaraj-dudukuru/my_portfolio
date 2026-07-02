@@ -25,7 +25,7 @@ export default function Services() {
                 key={s.id}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10%' }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: i * 0.07 }}
               >
                 <Card hoverable className="group flex h-full flex-col">

@@ -139,7 +139,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5 }}
           >
             <Card className="p-6 sm:p-8">
@@ -222,7 +222,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: 0.08 }}
             className="grid gap-3 content-start"
           >

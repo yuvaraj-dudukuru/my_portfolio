@@ -30,6 +30,21 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        var key = 'yd-theme';
+        var stored = localStorage.getItem(key);
+        var theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.classList.toggle('light', theme === 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
   </head>
   <body class="bg-bg text-ink antialiased">
     <div id="root"></div>

@@ -20,7 +20,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-15%' }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
             className="space-y-5 text-base leading-relaxed text-ink-muted sm:text-lg"
           >
@@ -62,7 +62,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-15%' }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: 0.1 }}
             className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-1"
           >

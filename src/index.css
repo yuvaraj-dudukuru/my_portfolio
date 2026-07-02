@@ -24,30 +24,44 @@
   }
 
   html.dark {
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   html.dark body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #000000;
+    color: #FFFFFF;
   }
 
-  html.dark .bg-bg         { background-color: #FFFFFF; }
-  html.dark .bg-bg-subtle  { background-color: #00FFFF; }
-  html.dark .bg-bg-raised  { background-color: #FFFFFF; }
-  html.dark .text-ink      { color: #000000; }
-  html.dark .text-ink-muted  { color: #000000; }
-  html.dark .text-ink-subtle { color: #000000; }
-  html.dark .border-bg-border { border-color: #000000; }
-  html.dark .border-ink    { border-color: #000000; }
+  html.dark .bg-bg         { background-color: #000000; }
+  html.dark .bg-bg-subtle  { background-color: #003333; }
+  html.dark .bg-bg-raised  { background-color: #111111; }
+  html.dark .text-ink      { color: #FFFFFF; }
+  html.dark .text-ink-muted  { color: #E0E0E0; }
+  html.dark .text-ink-subtle { color: #B0B0B0; }
+  html.dark .border-bg-border { border-color: #FFFFFF; }
+  html.dark .border-ink    { border-color: #FFFFFF; }
+  html.dark .shadow-neo,
+  html.dark .shadow-neo-sm,
+  html.dark .shadow-neo-lg,
+  html.dark .shadow-card,
+  html.dark .shadow-glow {
+    box-shadow: 10px 10px 0px #FFFFFF;
+  }
+  html.dark .neo-pressable:hover:not(:disabled),
+  html.dark .neo-hover:hover {
+    box-shadow: 12px 12px 0px #FFFFFF;
+  }
+  html.dark .neo-pressable:active:not(:disabled) {
+    box-shadow: 2px 2px 0px #FFFFFF;
+  }
   html.dark .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
   }
   html.dark .gradient-text {
-    color: #000000;
-    -webkit-text-fill-color: #000000;
+    color: #FFFFFF;
+    -webkit-text-fill-color: #FFFFFF;
     text-decoration-color: #FFE500;
   }
 }
@@ -58,12 +72,12 @@
   }
 
   .section {
-    @apply scroll-mt-24 py-24 sm:py-28;
+    @apply relative z-0 scroll-mt-24 py-24 sm:py-28;
   }
 
   .heading-display {
     font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-ink;
   }
 
   .text-balance {
@@ -137,4 +151,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #FFD700;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #003333;
+  border-color: #FFFFFF;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  border-color: #FFFFFF;
 }

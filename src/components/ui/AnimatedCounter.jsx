@@ -8,7 +8,7 @@ export default function AnimatedCounter({
   duration = 1400,
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-20%' });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {

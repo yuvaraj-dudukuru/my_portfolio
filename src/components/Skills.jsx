@@ -19,7 +19,7 @@ export default function Skills() {
               key={group.id}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: i * 0.05 }}
             >
               <Card hoverable className="h-full p-5">

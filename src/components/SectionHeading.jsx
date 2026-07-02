@@ -12,7 +12,7 @@ export default function SectionHeading({
     <motion.div
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-15%' }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={cn(
         'mb-14 max-w-2xl',
