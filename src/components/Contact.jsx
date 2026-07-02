@@ -127,7 +127,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section bg-bg-subtle">
       <div className="container-x">
         <SectionHeading
           eyebrow="Contact"
@@ -352,10 +352,10 @@ function TextareaField({ id, label, error, rows = 5, ...rest }) {
 
 function inputClasses(hasError) {
   const base =
-    'mt-1.5 w-full rounded-lg border bg-bg/60 px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-subtle transition-colors focus-ring';
+    'mt-1.5 w-full border-4 bg-bg-raised px-3.5 py-2.5 text-sm font-bold text-ink placeholder:text-ink shadow-neo transition-all focus-ring';
   return hasError
-    ? `${base} border-red-400/50 focus:border-red-400/70`
-    : `${base} border-bg-border hover:border-bg-border/80 focus:border-accent/50`;
+    ? `${base} border-red-600`
+    : `${base} border-ink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-neo-hover focus:border-ink`;
 }
 
 function ContactLink({ icon, label, value, href, external = false }) {
@@ -364,10 +364,10 @@ function ContactLink({ icon, label, value, href, external = false }) {
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className="group flex items-center justify-between rounded-xl border border-bg-border bg-bg-subtle/60 p-4 transition-colors hover:border-accent/30 hover:bg-bg-raised focus-ring"
+      className="neo-hover group flex items-center justify-between border-4 border-ink bg-bg-subtle p-4 focus-ring"
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent/20 bg-accent-soft text-accent">
+        <span className="flex h-10 w-10 items-center justify-center border-4 border-ink bg-accent text-ink shadow-neo">
           {icon}
         </span>
         <div>

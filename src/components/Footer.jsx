@@ -4,11 +4,11 @@ import { navLinks } from '../data/navigation.js';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-bg-border bg-bg-subtle/40">
+    <footer className="border-t-4 border-ink bg-accent">
       <div className="container-x grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-bg-border bg-bg-raised heading-display text-sm font-bold gradient-text">
+            <span className="flex h-9 w-9 items-center justify-center border-4 border-ink bg-bg-raised heading-display text-sm font-bold gradient-text shadow-neo">
               {personal.monogram}
             </span>
             <span className="text-sm font-semibold">{personal.name}</span>
@@ -27,7 +27,7 @@ export default function Footer() {
               <li key={l.id}>
                 <a
                   href={l.to}
-                  className="text-ink-muted hover:text-ink focus-ring rounded"
+                  className="font-bold text-ink hover:underline focus-ring"
                 >
                   {l.label}
                 </a>
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-bg-border">
+      <div className="border-t-4 border-ink">
         <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-ink-subtle sm:flex-row">
           <span>© {new Date().getFullYear()} {personal.name}. All rights reserved.</span>
           <span className="font-mono">Built with React, Vite & Tailwind.</span>
@@ -78,7 +78,7 @@ function SocialIcon({ href, label, icon }) {
       target={href.startsWith('http') ? '_blank' : undefined}
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-bg-border bg-bg-raised text-ink-muted transition-colors hover:text-ink hover:border-accent/40 focus-ring"
+      className="neo-pressable inline-flex h-9 w-9 items-center justify-center bg-bg-raised text-ink focus-ring"
     >
       {icon}
     </a>

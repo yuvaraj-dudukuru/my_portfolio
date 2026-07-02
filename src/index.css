@@ -12,39 +12,42 @@
   }
 
   body {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    background-color: #FFFFFF;
+    color: #000000;
   }
 
   ::selection {
     background-color: #FFE500;
-    color: #0A0A0A;
+    color: #000000;
   }
 
-  /* Dark mode overrides */
   html.dark {
-    color-scheme: dark;
+    color-scheme: light;
   }
+
   html.dark body {
-    background-color: #111111;
-    color: #FFFBF0;
+    background-color: #FFFFFF;
+    color: #000000;
   }
-  html.dark .bg-bg         { background-color: #111111; }
-  html.dark .bg-bg-subtle  { background-color: #1A1A1A; }
-  html.dark .bg-bg-raised  { background-color: #222222; }
-  html.dark .text-ink      { color: #FFFBF0; }
-  html.dark .text-ink-muted  { color: #C0B89A; }
-  html.dark .text-ink-subtle { color: #807060; }
-  html.dark .border-bg-border { border-color: #FFFBF0; }
-  html.dark .border-ink    { border-color: #FFFBF0; }
+
+  html.dark .bg-bg         { background-color: #FFFFFF; }
+  html.dark .bg-bg-subtle  { background-color: #00FFFF; }
+  html.dark .bg-bg-raised  { background-color: #FFFFFF; }
+  html.dark .text-ink      { color: #000000; }
+  html.dark .text-ink-muted  { color: #000000; }
+  html.dark .text-ink-subtle { color: #000000; }
+  html.dark .border-bg-border { border-color: #000000; }
+  html.dark .border-ink    { border-color: #000000; }
   html.dark .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
   }
   html.dark .gradient-text {
-    color: #FFE500;
-    -webkit-text-fill-color: #FFE500;
+    color: #000000;
+    -webkit-text-fill-color: #000000;
     text-decoration-color: #FFE500;
   }
 }
@@ -59,18 +62,17 @@
   }
 
   .heading-display {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    @apply tracking-tight;
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    @apply font-bold tracking-tight;
   }
 
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Neo-brutalism: bold yellow underline instead of gradient */
   .gradient-text {
-    color: #0A0A0A;
-    -webkit-text-fill-color: #0A0A0A;
+    color: #000000;
+    -webkit-text-fill-color: #000000;
     text-decoration: underline;
     text-decoration-color: #FFE500;
     text-decoration-thickness: 6px;
@@ -79,30 +81,60 @@
 
   .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
   }
 
   .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+
+  .neo-container {
+    @apply border-4 border-ink bg-bg-raised text-ink shadow-neo;
+  }
+
+  .neo-pressable {
+    @apply border-4 border-ink transition-all duration-150 shadow-neo;
+  }
+
+  .neo-pressable:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0px #000000;
+  }
+
+  .neo-pressable:active:not(:disabled) {
+    transform: translate(5px, 5px);
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .neo-hover {
+    @apply transition-all duration-150;
+  }
+
+  .neo-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0px #000000;
   }
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #F0EAD6;
+  background: #00FFFF;
+  border: 4px solid #000000;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #0A0A0A;
-  border-radius: 0;
+  background: #FFE500;
+  border: 4px solid #000000;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: #FFD700;
 }

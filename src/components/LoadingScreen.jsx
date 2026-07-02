@@ -16,12 +16,12 @@ export default function LoadingScreen({ subtle = false }) {
         transition={{ duration: 0.35 }}
         className="flex flex-col items-center gap-5"
       >
-        <div className="flex h-14 w-14 items-center justify-center border-2 border-ink bg-accent shadow-neo">
+        <div className="flex h-14 w-14 items-center justify-center border-4 border-ink bg-accent shadow-neo">
           <span className="heading-display text-sm font-bold text-ink">
             {personal.monogram}
           </span>
         </div>
-        <div className="h-2 w-32 overflow-hidden border border-ink bg-bg-subtle">
+        <div className="h-2 w-32 overflow-hidden border-4 border-ink bg-bg-subtle">
           <motion.div
             className="h-full w-1/3 bg-ink"
             animate={{ x: ['-100%', '300%'] }}

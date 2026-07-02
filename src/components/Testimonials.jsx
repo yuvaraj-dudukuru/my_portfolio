@@ -10,7 +10,7 @@ export default function Testimonials() {
   if (!testimonials.length) return null;
 
   return (
-    <section id="testimonials" className="section">
+    <section id="testimonials" className="section bg-accent">
       <div className="container-x">
         <SectionHeading
           eyebrow="Testimonials"
@@ -38,7 +38,7 @@ export default function Testimonials() {
 
                 <div className="mt-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-bg-border bg-bg-raised text-sm font-semibold text-ink">
+                    <div className="flex h-10 w-10 items-center justify-center border-4 border-ink bg-accent text-sm font-bold text-ink shadow-neo">
                       {initials(t.name)}
                     </div>
                     <div>

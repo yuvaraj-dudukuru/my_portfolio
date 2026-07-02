@@ -7,7 +7,7 @@ import SectionHeading from './SectionHeading.jsx';
 
 export default function Services() {
   return (
-    <section id="services" className="section">
+    <section id="services" className="section bg-accent">
       <div className="container-x">
         <SectionHeading
           eyebrow="Services"
@@ -29,7 +29,7 @@ export default function Services() {
                 transition={{ duration: 0.45, delay: i * 0.07 }}
               >
                 <Card hoverable className="group flex h-full flex-col">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-accent/20 bg-accent-soft text-accent">
+                  <div className="flex h-11 w-11 items-center justify-center border-4 border-ink bg-accent text-ink shadow-neo">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="heading-display mt-5 text-lg font-semibold text-ink">
@@ -54,7 +54,7 @@ export default function Services() {
                         );
                       }
                     }}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-ink transition-colors focus-ring rounded"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-ink underline decoration-4 underline-offset-4 decoration-accent hover:-translate-x-0.5 hover:-translate-y-0.5 focus-ring"
                   >
                     {s.cta.label}
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

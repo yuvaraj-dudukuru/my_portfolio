@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
 
 export default function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section bg-bg-subtle">
       <div className="container-x">
         <SectionHeading
           eyebrow="About"
@@ -69,7 +69,7 @@ export default function About() {
             {personal.stats.map((s) => (
               <div
                 key={s.label}
-                className="border-2 border-ink bg-bg-raised p-5 shadow-neo transition-all duration-150 hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+                className="border-4 border-ink bg-accent p-5 shadow-neo neo-hover"
               >
                 <p className="heading-display text-3xl font-bold text-ink">
                   <AnimatedCounter value={s.value} suffix={s.suffix} />

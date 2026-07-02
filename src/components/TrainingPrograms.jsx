@@ -22,7 +22,7 @@ export default function TrainingPrograms() {
   };
 
   return (
-    <section id="training" className="section">
+    <section id="training" className="section bg-bg-subtle">
       <div className="container-x">
         <SectionHeading
           eyebrow="Training Programs"
@@ -43,7 +43,7 @@ export default function TrainingPrograms() {
               >
                 <Card
                   className={`flex h-full flex-col ${
-                    p.badge ? 'border-accent/40 shadow-glow' : ''
+                    p.badge ? 'bg-accent' : ''
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -79,7 +79,7 @@ export default function TrainingPrograms() {
                     onClick={() => setOpenId(isOpen ? null : p.id)}
                     aria-expanded={isOpen}
                     aria-controls={`curriculum-${p.id}`}
-                    className="mt-5 flex w-full items-center justify-between rounded-lg border border-bg-border bg-bg/50 px-4 py-2.5 text-sm font-medium text-ink-muted hover:text-ink hover:border-accent/30 focus-ring transition-colors"
+                    className="neo-pressable mt-5 flex w-full items-center justify-between bg-bg-raised px-4 py-2.5 text-sm font-bold text-ink focus-ring"
                   >
                     <span>Curriculum</span>
                     <ChevronDown
@@ -97,7 +97,7 @@ export default function TrainingPrograms() {
                         transition={{ duration: 0.25, ease: 'easeOut' }}
                         className="overflow-hidden"
                       >
-                        <ol className="mt-4 space-y-4 border-l border-bg-border pl-4">
+                        <ol className="mt-4 space-y-4 border-l-4 border-ink pl-4">
                           {p.curriculum.map((c) => (
                             <li key={c.week} className="text-sm">
                               <p className="text-xs font-mono uppercase tracking-wider text-accent">
@@ -107,7 +107,7 @@ export default function TrainingPrograms() {
                               <ul className="mt-1.5 space-y-1 text-ink-muted">
                                 {c.topics.map((t) => (
                                   <li key={t} className="flex gap-2">
-                                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                                    <span className="mt-1.5 h-2 w-2 shrink-0 border-2 border-ink bg-accent" />
                                     <span>{t}</span>
                                   </li>
                                 ))}

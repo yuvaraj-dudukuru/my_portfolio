@@ -25,7 +25,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2 border-2 border-ink bg-accent px-3 py-1.5 text-xs font-bold text-ink shadow-neo-sm"
+              className="inline-flex items-center gap-2 border-4 border-ink bg-accent px-3 py-1.5 text-xs font-bold text-ink shadow-neo"
             >
               <Sparkles className="h-3.5 w-3.5" />
               Open to internships · Available for tutoring
@@ -87,7 +87,7 @@ export default function Hero() {
               className="mt-10 flex items-center gap-3 font-mono text-sm text-ink-muted"
               aria-live="polite"
             >
-              <span className="inline-block h-2 w-2 animate-pulse border border-ink bg-accent" />
+              <span className="inline-block h-2 w-2 animate-pulse border-4 border-ink bg-accent" />
               <span className="text-ink-subtle">currently:</span>
               <RotatingTitle titles={personal.rotatingTitles} />
             </motion.div>
@@ -101,7 +101,7 @@ export default function Hero() {
             className="hidden md:block"
           >
             <div className="relative">
-              <div className="relative h-72 w-60 overflow-hidden border-2 border-ink shadow-neo-lg lg:h-80 lg:w-64">
+              <div className="relative h-72 w-60 overflow-hidden border-4 border-ink bg-bg-raised shadow-neo lg:h-80 lg:w-64">
                 <img
                   src={`${base}images/profile.jpg`}
                   alt="Yuvaraj Dudukuru"
@@ -110,7 +110,7 @@ export default function Hero() {
               </div>
               {/* Yellow offset block — the neo-brutalism "frame" */}
               <div
-                className="absolute -z-10 left-3 top-3 h-full w-full border-2 border-ink bg-accent"
+                className="absolute -z-10 left-3 top-3 h-full w-full border-4 border-ink bg-accent"
                 aria-hidden="true"
               />
             </div>

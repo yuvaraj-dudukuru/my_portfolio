@@ -31,10 +31,10 @@ export default function Projects() {
                 key={tag}
                 onClick={() => setActive(tag)}
                 aria-pressed={isActive}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors focus-ring ${
+                className={`neo-pressable border-4 px-3.5 py-1.5 text-xs font-bold focus-ring ${
                   isActive
-                    ? 'border-accent/50 bg-accent-soft text-accent'
-                    : 'border-bg-border bg-bg-subtle/60 text-ink-muted hover:text-ink'
+                    ? 'bg-accent text-ink'
+                    : 'bg-bg-raised text-ink hover:bg-bg-subtle'
                 }`}
               >
                 {tag}
@@ -58,7 +58,7 @@ export default function Projects() {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
               >
                 <Card hoverable className="group flex h-full flex-col overflow-hidden p-0">
-                  <div className="relative aspect-[16/10] overflow-hidden border-b border-bg-border bg-bg-raised">
+                  <div className="relative aspect-[16/10] overflow-hidden border-b-4 border-ink bg-bg-subtle">
                     {p.image ? (
                       <img
                         src={p.image}
@@ -72,7 +72,7 @@ export default function Projects() {
                         Project preview
                       </div>
                     )}
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bg/80 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-accent/80 to-transparent" />
                   </div>
 
                   <div className="flex flex-1 flex-col p-5">
@@ -95,7 +95,7 @@ export default function Projects() {
                       {p.stack.map((s) => (
                         <li
                           key={s}
-                          className="rounded-md border border-bg-border bg-bg/60 px-2 py-0.5 font-mono text-[11px] text-ink-muted"
+                          className="border-4 border-ink bg-bg-subtle px-2 py-0.5 font-mono text-[11px] font-bold text-ink shadow-neo"
                         >
                           {s}
                         </li>
@@ -109,7 +109,7 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${p.title} on GitHub`}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-bg-border bg-bg-raised text-ink-muted hover:text-ink hover:border-accent/40 focus-ring"
+                          className="neo-pressable inline-flex h-9 w-9 items-center justify-center bg-bg-raised text-ink focus-ring"
                         >
                           <Github className="h-4 w-4" />
                         </a>
@@ -119,7 +119,7 @@ export default function Projects() {
                           href={p.links.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-bg-border bg-bg-raised px-3 py-2 text-xs font-medium text-ink-muted hover:text-ink hover:border-accent/40 focus-ring"
+                          className="neo-pressable inline-flex items-center gap-1.5 bg-bg-raised px-3 py-2 text-xs font-bold text-ink focus-ring"
                         >
                           Live Demo
                           <ExternalLink className="h-3.5 w-3.5" />

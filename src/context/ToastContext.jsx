@@ -11,9 +11,9 @@ const ICONS = {
 };
 
 const TONE = {
-  success: 'border-emerald-400/30 bg-emerald-500/10 text-emerald-200',
-  error: 'border-red-400/30 bg-red-500/10 text-red-200',
-  info: 'border-accent/30 bg-accent-soft text-ink',
+  success: 'border-4 border-ink bg-bg-subtle text-ink',
+  error: 'border-4 border-ink bg-accent text-ink',
+  info: 'border-4 border-ink bg-bg-raised text-ink',
 };
 
 let idCounter = 0;
@@ -66,7 +66,7 @@ function ToastViewportInternal({ toasts, dismiss }) {
               exit={{ opacity: 0, y: 8, scale: 0.96 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               role="status"
-              className={`pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border px-4 py-3 shadow-card backdrop-blur ${TONE[t.tone]}`}
+              className={`pointer-events-auto flex w-full max-w-sm items-start gap-3 border px-4 py-3 shadow-neo ${TONE[t.tone]}`}
             >
               <Icon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
               <div className="flex-1 text-sm">
@@ -78,7 +78,7 @@ function ToastViewportInternal({ toasts, dismiss }) {
               <button
                 onClick={() => dismiss(t.id)}
                 aria-label="Dismiss notification"
-                className="text-ink-subtle hover:text-ink focus-ring rounded"
+                className="font-bold text-ink hover:underline focus-ring"
               >
                 <X className="h-4 w-4" />
               </button>
