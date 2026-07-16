@@ -5,8 +5,9 @@ export const personal = {
   name: 'Yuvaraj Dudukuru',
   shortName: 'Yuvaraj',
   monogram: 'YD',
-  role: 'CS Student · AI & Data Science · Builder & Trainer',
-  tagline: 'Building real projects. Teaching what I know.',
+  role: 'AI Engineer · Full Stack Developer · COO',
+  tagline:
+    'I build AI-powered products, scalable web applications, and digital experiences that solve real-world problems.',
   location: 'India',
 
   email: 'yuvarajdudukuru55@gmail.com',
