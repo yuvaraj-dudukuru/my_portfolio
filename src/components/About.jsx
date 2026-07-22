@@ -64,19 +64,30 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-1"
+            className="space-y-6"
           >
-            {personal.stats.map((s) => (
-              <div
-                key={s.label}
-                className="border-4 border-ink bg-accent p-5 shadow-neo neo-hover"
-              >
-                <p className="heading-display text-3xl font-bold text-ink">
-                  <AnimatedCounter value={s.value} suffix={s.suffix} />
-                </p>
-                <p className="mt-1 text-sm font-medium text-ink-muted">{s.label}</p>
-              </div>
-            ))}
+            {/* Profile photo — full-width square on mobile, fixed square on desktop.
+                Neo-brutalist border + hard shadow to match the card style. */}
+            <img
+              src={`${base}images/profile.jpg`}
+              alt={`${personal.name} — portrait`}
+              loading="lazy"
+              className="aspect-square w-full border-4 border-ink bg-bg-raised object-cover shadow-neo md:mx-auto md:h-64 md:w-64"
+            />
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-1">
+              {personal.stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="border-4 border-ink bg-accent p-5 shadow-neo neo-hover"
+                >
+                  <p className="heading-display text-3xl font-bold text-ink">
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-ink-muted">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>

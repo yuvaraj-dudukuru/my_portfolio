@@ -47,8 +47,8 @@ export default function Navbar() {
         aria-label="Primary"
       >
         <a
-          href="#home"
-          onClick={(e) => goAnchor(e, '#home')}
+          href="#hero"
+          onClick={(e) => goAnchor(e, '#hero')}
           className="flex items-center gap-2.5 focus-ring"
           aria-label={`${personal.name} — Home`}
         >

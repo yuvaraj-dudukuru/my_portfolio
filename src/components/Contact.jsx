@@ -17,21 +17,17 @@ import Card from './ui/Card.jsx';
 import SectionHeading from './SectionHeading.jsx';
 
 const SUBJECT_OPTIONS = [
-  'Internship Opportunity',
-  'Training Inquiry',
-  '1:1 Tutoring',
-  'Collaboration',
+  'Python Training Inquiry',
+  'AI & ML Training Inquiry',
+  'Web Development Training Inquiry',
+  '1:1 Mentoring Session',
+  'Internship / Collaboration',
   'Other',
 ];
 
-// EmailJS credentials are read from Vite env. Leave placeholders in `.env.example`
-// and set the real values in `.env.local` (never committed).
-// TODO: set VITE_EMAILJS_SERVICE_ID / TEMPLATE_ID / PUBLIC_KEY before deploy.
-const EMAILJS = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-};
+// EmailJS credentials are read from Vite env at build time (`import.meta.env.VITE_*`,
+// NOT CRA's `process.env.REACT_APP_*`). Set them in `.env.local` before deploy:
+//   VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY
 
 const initialForm = { name: '', email: '', subject: '', message: '' };
 
@@ -84,18 +80,21 @@ export default function Contact() {
     setStatus('sending');
 
     try {
-      if (EMAILJS.serviceId && EMAILJS.templateId && EMAILJS.publicKey) {
+      if (
+        import.meta.env.VITE_EMAILJS_SERVICE_ID &&
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID &&
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      ) {
         await emailjs.send(
-          EMAILJS.serviceId,
-          EMAILJS.templateId,
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           {
             from_name: form.name,
             from_email: form.email,
             subject: form.subject,
             message: form.message,
-            to_email: personal.email,
           },
-          { publicKey: EMAILJS.publicKey },
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
         );
       } else {
         // No EmailJS keys configured — simulate a successful send in dev so
@@ -109,8 +108,8 @@ export default function Contact() {
 
       push({
         tone: 'success',
-        title: 'Message sent',
-        description: "Thanks — I'll get back to you within a day or two.",
+        title: 'Message sent!',
+        description: "I'll reply within 24 hours.",
       });
       setForm(initialForm);
     } catch (err) {
@@ -118,8 +117,8 @@ export default function Contact() {
       console.error('[contact] EmailJS error', err);
       push({
         tone: 'error',
-        title: "Couldn't send message",
-        description: `Email me directly at ${personal.email} instead.`,
+        title: 'Something went wrong',
+        description: 'Try WhatsApp instead.',
       });
     } finally {
       setStatus('idle');

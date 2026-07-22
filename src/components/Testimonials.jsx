@@ -15,8 +15,13 @@ export default function Testimonials() {
         <SectionHeading
           eyebrow="Testimonials"
           title="What Students Say"
-          description="Feedback from learners I've worked with — placeholders for now, real quotes coming soon."
+          description="Feedback from learners I've worked with."
         />
+
+        <div className="mb-8 inline-flex items-center gap-2 border-4 border-ink bg-bg-raised px-4 py-2 text-sm font-bold text-ink shadow-neo">
+          <span aria-hidden="true">🚧</span>
+          [Student testimonials coming soon — first cohort in progress]
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Clock, Monitor, Tag, Trophy } from 'lucide-react';
+import { ArrowRight, ChevronDown, Tag, Trophy } from 'lucide-react';
 import { useState } from 'react';
 import { programs } from '../data/programs.js';
 import Badge from './ui/Badge.jsx';
@@ -10,8 +10,9 @@ import SectionHeading from './SectionHeading.jsx';
 export default function TrainingPrograms() {
   const [openId, setOpenId] = useState(programs.find((p) => p.badge)?.id ?? programs[0]?.id);
 
-  const handleJoin = (program) => {
-    const subject = `Training Inquiry — ${program.title}`;
+  const handleEnroll = (program) => {
+    // Prefer the mapped dropdown subject so it lands on a real <select> option.
+    const subject = program.subject ?? `Training Inquiry — ${program.title}`;
     const el = document.getElementById('contact');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -56,18 +57,22 @@ export default function TrainingPrograms() {
                     {p.badge && <Badge tone="accent">{p.badge}</Badge>}
                   </div>
 
+                  {/* Duration + mode badges */}
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Badge tone={p.badge ? 'outline' : 'accent'}>{p.duration}</Badge>
+                    <Badge tone="outline">{p.mode}</Badge>
+                  </div>
+
+                  {/* Short 2-line pitch */}
+                  <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                    {p.description}
+                  </p>
+
                   <ul className="mt-5 space-y-2 text-sm text-ink-muted">
                     <li className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-accent" />
-                      <span>{p.duration}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Monitor className="h-4 w-4 text-accent" />
-                      <span>{p.mode}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
                       <Tag className="h-4 w-4 text-accent" />
-                      <span>{p.price}</span>
+                      {/* [PRICE_PLACEHOLDER] — replace price in src/data/programs.js */}
+                      <span className="font-bold text-ink">{p.price}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Trophy className="h-4 w-4 text-accent" />
@@ -81,7 +86,7 @@ export default function TrainingPrograms() {
                     aria-controls={`curriculum-${p.id}`}
                     className="neo-pressable mt-5 flex w-full items-center justify-between bg-bg-raised px-4 py-2.5 text-sm font-bold text-ink focus-ring"
                   >
-                    <span>Curriculum</span>
+                    <span>View Curriculum</span>
                     <ChevronDown
                       className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                     />
@@ -120,11 +125,12 @@ export default function TrainingPrograms() {
                   </AnimatePresence>
 
                   <Button
-                    onClick={() => handleJoin(p)}
+                    onClick={() => handleEnroll(p)}
                     variant={p.badge ? 'primary' : 'secondary'}
                     className="mt-6"
                   >
-                    Join Program
+                    Enroll Now
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Card>
               </motion.div>

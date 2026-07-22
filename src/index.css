@@ -132,6 +132,34 @@
     transform: translate(-2px, -2px);
     box-shadow: 12px 12px 0px #000000;
   }
+
+  /* Credibility marquee — items are duplicated in the DOM, so -50% loops seamlessly. */
+  .animate-marquee {
+    animation: marquee 24s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Gentle idle bounce for the floating WhatsApp icon. */
+  .animate-soft-bounce {
+    animation: soft-bounce 2.6s ease-in-out infinite;
+  }
+  @keyframes soft-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-soft-bounce {
+      animation: none;
+    }
+  }
 }
 
 ::-webkit-scrollbar {

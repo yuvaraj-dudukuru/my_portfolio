@@ -10,9 +10,11 @@ const ICONS = {
   info: Info,
 };
 
+// Green success / red error use standard conversion semantics while keeping the
+// neo-brutalist frame (thick border + hard shadow).
 const TONE = {
-  success: 'border-4 border-ink bg-bg-subtle text-ink',
-  error: 'border-4 border-ink bg-accent text-ink',
+  success: 'border-4 border-ink bg-green-400 text-black',
+  error: 'border-4 border-ink bg-red-500 text-white',
   info: 'border-4 border-ink bg-bg-raised text-ink',
 };
 
@@ -72,7 +74,7 @@ function ToastViewportInternal({ toasts, dismiss }) {
               <div className="flex-1 text-sm">
                 {t.title && <p className="font-semibold">{t.title}</p>}
                 {t.description && (
-                  <p className="text-ink-muted mt-0.5">{t.description}</p>
+                  <p className="mt-0.5 opacity-80">{t.description}</p>
                 )}
               </div>
               <button

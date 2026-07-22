@@ -6,7 +6,7 @@ export default function ScrollToTop() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 300);
+    const onScroll = () => setShow(window.scrollY > 400);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -23,7 +23,7 @@ export default function ScrollToTop() {
           transition={{ duration: 0.2 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
-          className="neo-pressable fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center bg-accent text-ink focus-ring"
+          className="neo-pressable fixed bottom-24 right-6 z-40 inline-flex h-11 w-11 items-center justify-center bg-accent text-ink focus-ring"
         >
           <ArrowUp className="h-5 w-5" />
         </motion.button>

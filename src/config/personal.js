@@ -8,9 +8,17 @@ export const personal = {
   role: 'AI Engineer · Full Stack Developer · COO',
   tagline:
     'I build AI-powered products, scalable web applications, and digital experiences that solve real-world problems.',
-  location: 'India',
+  location: 'Hyderabad, India',
 
-  email: 'yuvarajdudukuru55@gmail.com',
+  // Hero headline + subtext (conversion-focused: leads with the training offer).
+  heroHeadline: 'I Build Systems. I Teach What I Know.',
+  heroSubtext:
+    'AI & Data Science specialist offering training programs in Python, AI/ML, and Web Development. Based in Hyderabad.',
+
+  // Shows the "🟢 Currently Accepting Students" urgency pill in the hero.
+  acceptingStudents: true,
+
+  email: 'dudukuruyuvaraj55@gmail.com',
   whatsappNumber: '916305017247',
   whatsappUrl: 'https://wa.me/916305017247',
 
@@ -23,12 +31,20 @@ export const personal = {
   // TODO: replace with the actual hosted PDF (e.g. /resume.pdf in /public).
   resumeUrl: '/resume.pdf',
 
-  // Hero typing rotator
+  // Hero typing rotator — cycles through the roles you want to be known for.
   rotatingTitles: [
-    'Python Developer',
-    'AI/ML Enthusiast',
-    'Full-Stack Builder',
     'Python Trainer',
+    'AI/ML Developer',
+    'Full-Stack Builder',
+    'Data Science Enthusiast',
+  ],
+
+  // Credibility strip shown between the hero and the rest of the page.
+  credentials: [
+    'Harvard CS50 Certified',
+    'HubSpot Academy',
+    'Python & Data Science Certified',
+    'Currently: COO @ Fraylon Technologies',
   ],
 
   // Stats bar — update numbers as they grow.
