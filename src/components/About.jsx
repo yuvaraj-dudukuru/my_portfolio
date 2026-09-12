@@ -24,21 +24,13 @@ export default function About() {
             transition={{ duration: 0.55 }}
             className="space-y-5 text-base leading-relaxed text-ink-muted sm:text-lg"
           >
-            <p>
-              I&apos;m a Computer Science undergraduate focused on{' '}
-              <span className="font-bold text-ink">AI &amp; Data Science</span>. My work
-              sits at the intersection of building real software and
-              understanding the math behind it — I&apos;d rather ship a small
-              system that works than write another notebook that never leaves
-              my laptop.
+            <p className="text-xl font-bold text-ink">
+              Founder of Lumora Space & Progressis 2 | Mentored 100+ students | Shipped 5+ production-grade systems.
             </p>
             <p>
-              Outside of coursework I build projects (an AI career advisor, a
-              full-stack chat app, an enterprise WhatsApp automation platform),
-              run a startup-in-progress, and{' '}
-              <span className="font-bold text-ink">tutor students</span> in Python, AI/ML
-              and Web Development through structured training programs and 1:1
-              sessions.
+              My work sits at the intersection of building real software and
+              understanding the math behind it. I specialize in AI and Data Science,
+              crafting digital experiences that solve real-world problems.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">

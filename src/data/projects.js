@@ -7,6 +7,21 @@ export const projectTags = ['All', 'AI/ML', 'Web', 'Automation'];
 
 export const projects = [
   {
+    id: 'lumora-lms',
+    title: 'Lumora LMS',
+    tagline: 'Scalable Learning Management System',
+    description:
+      'A comprehensive learning management platform built for scalability and performance. Features role-based access control, progress tracking, and interactive course modules.',
+    image: `${base}images/career-copilot.png`, // Fallback image for now
+    tags: ['Web'],
+    stack: ['React', 'Node.js', 'MongoDB', 'Express'],
+    links: {
+      github: 'https://github.com/yuvaraj-dudukuru',
+      live: '',
+    },
+    featured: true,
+  },
+  {
     id: 'career-copilot',
     title: 'Career Co-Pilot',
     tagline: 'AI career advisor with personalized 4-week roadmaps',
@@ -37,31 +52,20 @@ export const projects = [
     },
     featured: true,
   },
-  {
-    id: 'realtime-chat',
-    title: 'Real-time Chat App',
-    tagline: 'Bidirectional WebSocket chat with full-stack integration',
-    description:
-      'Full-stack real-time chat application using the WebSocket protocol for true bidirectional communication. Includes rooms, presence, and persistent message history.',
-    image: `${base}images/realtime-chat.jfif`,
-    tags: ['Web'],
-    stack: ['Node.js', 'WebSockets', 'JavaScript', 'Full-Stack'],
-    links: {
-      // TODO: confirm actual repo URL
-      github: 'https://github.com/yuvaraj-dudukuru',
-      live: '',
-    },
-  },
-  // TODO: Add 2-3 more projects as they ship.
+  // --- Archived Trivial Projects ---
   // {
-  //   id: 'next-project',
-  //   title: '',
-  //   tagline: '',
-  //   description: '',
-  //   image: `${base}images/next-project.png`,
-  //   tags: ['AI/ML'],
-  //   stack: [],
-  //   links: { github: '', live: '' },
+  //   id: 'realtime-chat',
+  //   title: 'Real-time Chat App',
+  //   tagline: 'Bidirectional WebSocket chat with full-stack integration',
+  //   description:
+  //     'Full-stack real-time chat application using the WebSocket protocol for true bidirectional communication. Includes rooms, presence, and persistent message history.',
+  //   image: `${base}images/realtime-chat.jfif`,
+  //   tags: ['Web'],
+  //   stack: ['Node.js', 'WebSockets', 'JavaScript', 'Full-Stack'],
+  //   links: {
+  //     github: 'https://github.com/yuvaraj-dudukuru',
+  //     live: '',
+  //   },
   // },
 ];
 

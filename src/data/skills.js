@@ -28,8 +28,7 @@ export const skills = [
   {
     id: 'learning',
     label: 'Currently Learning',
-    // TODO: fill in real items — placeholders so the card is not empty.
-    items: ['LangChain', 'MLOps basics', 'System design'],
+    items: ['Quantum Computing'],
   },
 ];
 

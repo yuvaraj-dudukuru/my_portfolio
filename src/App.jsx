@@ -5,6 +5,7 @@ import CredibilityStrip from './components/CredibilityStrip.jsx';
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx';
 import Footer from './components/Footer.jsx';
 import Hero from './components/Hero.jsx';
+import IntroOverlay from './components/IntroOverlay.jsx';
 import Navbar from './components/Navbar.jsx';
 import Projects from './components/Projects.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
@@ -35,6 +36,7 @@ function HomeSections() {
 export default function App() {
   return (
     <div className="relative min-h-screen bg-bg text-ink">
+      <IntroOverlay />
       <Navbar />
       <main className="relative z-0 min-h-screen">
         <Routes>

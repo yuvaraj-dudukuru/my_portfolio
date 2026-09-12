@@ -33,10 +33,10 @@ export const personal = {
 
   // Hero typing rotator — cycles through the roles you want to be known for.
   rotatingTitles: [
-    'Python Trainer',
+    'COO of Fraylon Technologies',
+    'Founder of Lumora Space',
     'AI/ML Developer',
     'Full-Stack Builder',
-    'Data Science Enthusiast',
   ],
 
   // Credibility strip shown between the hero and the rest of the page.
@@ -44,13 +44,14 @@ export const personal = {
     'Harvard CS50 Certified',
     'HubSpot Academy',
     'Python & Data Science Certified',
-    'Currently: COO @ Fraylon Technologies',
+    'Worked as: COO @ Fraylon Technologies',
+    'Currently: Founder @ Lumora Space',
   ],
 
   // Stats bar — update numbers as they grow.
   stats: [
-    { label: 'Projects Built', value: 3, suffix: '+' },
-    { label: 'Students Tutored', value: 10, suffix: '+' }, // TODO: confirm real number
+    { label: 'Production-Ready Systems', value: 5, suffix: '+' },
+    { label: 'Students Tutored', value: 100, suffix: '+' },
     { label: 'Startup in Progress', value: 1, suffix: '' },
   ],
 };

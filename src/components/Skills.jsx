@@ -2,6 +2,34 @@ import { motion } from 'framer-motion';
 import { skills } from '../data/skills.js';
 import Card from './ui/Card.jsx';
 import SectionHeading from './SectionHeading.jsx';
+import { Atom, Code, Database, Network } from 'lucide-react';
+import { FaPython, FaReact, FaHtml5, FaDocker, FaGithub } from 'react-icons/fa';
+import {
+  SiPandas, SiNumpy, SiScikitlearn, SiTensorflow, SiPytorch,
+  SiGooglegemini, SiJavascript, SiJupyter, SiPlotly
+} from 'react-icons/si';
+
+const iconMap = {
+  'Python': <FaPython />,
+  'Pandas': <SiPandas />,
+  'NumPy': <SiNumpy />,
+  'Scikit-learn': <SiScikitlearn />,
+  'TensorFlow': <SiTensorflow />,
+  'PyTorch': <SiPytorch />,
+  'Google Gemini API': <SiGooglegemini />,
+  'React': <FaReact />,
+  'JavaScript': <SiJavascript />,
+  'HTML / CSS': <FaHtml5 />,
+  'REST APIs': <Network size={14} />,
+  'WebSockets': <Network size={14} />,
+  'Jupyter': <SiJupyter />,
+  'SQL': <Database size={14} />,
+  'Matplotlib': <Code size={14} />,
+  'Plotly': <SiPlotly />,
+  'Docker': <FaDocker />,
+  'Git / GitHub': <FaGithub />,
+  'Quantum Computing': <Atom size={14} />,
+};
 
 export default function Skills() {
   return (
@@ -30,8 +58,13 @@ export default function Skills() {
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="border-4 border-ink bg-accent px-2.5 py-1 text-xs font-bold text-ink shadow-neo"
+                      className="flex items-center gap-1.5 border-4 border-ink bg-accent px-2.5 py-1 text-xs font-bold text-ink shadow-neo"
                     >
+                      {iconMap[item] && (
+                        <span className="flex items-center">
+                          {iconMap[item]}
+                        </span>
+                      )}
                       {item}
                     </li>
                   ))}
