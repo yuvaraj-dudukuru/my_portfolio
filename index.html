@@ -1,58 +1,84 @@
 <!doctype html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <!-- REVIEW: Vite base is '/', so the favicon must be served from root (was /my_portfolio/). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 
-    <title>Yuvaraj Dudukuru — AI & Data Science Student, Builder, Trainer</title>
+    <!-- Head tags below are the default (home) set. Client routes update them at
+         runtime via <Seo>, and scripts/generate-seo.mjs bakes a static copy per
+         route into dist/ at build time so crawlers get them without JS. -->
+    <title>Yuvaraj Dudukuru — AI &amp; Data Science Engineer</title>
     <meta
       name="description"
-      content="CS student specializing in AI & Data Science. Building real projects, running training programs in Python, AI/ML and Web Development, and open to internships."
+      content="I build software, explore emerging technology, and teach what I learn. Engineering work, experiments, and courses in AI, data science and full-stack development."
     />
-    <meta
-      name="keywords"
-      content="Python training Hyderabad, AI ML course, web development training, data science course India, Yuvaraj Dudukuru"
-    />
+    <link rel="canonical" href="https://yuvarajdevs.tech/" />
     <meta name="author" content="Yuvaraj Dudukuru" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://my-portfolio-pied-nine-81.vercel.app/" />
-    <meta
-      property="og:title"
-      content="Yuvaraj Dudukuru — AI & Data Science Student, Builder, Trainer"
-    />
+    <meta property="og:site_name" content="Yuvaraj Dudukuru" />
+    <meta property="og:url" content="https://yuvarajdevs.tech/" />
+    <meta property="og:title" content="Yuvaraj Dudukuru — AI &amp; Data Science Engineer" />
     <meta
       property="og:description"
-      content="Training programs in Python, AI/ML, and Web Development. Based in Hyderabad. Enroll now."
+      content="I build software, explore emerging technology, and teach what I learn."
     />
+    <meta property="og:image" content="https://yuvarajdevs.tech/images/profile.jpg" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Portrait of Yuvaraj Dudukuru" />
+
+    <!-- summary (not summary_large_image): the only real brand image is square. -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Yuvaraj Dudukuru — AI &amp; Data Science Engineer" />
+    <meta
+      name="twitter:description"
+      content="I build software, explore emerging technology, and teach what I learn."
+    />
+    <meta name="twitter:image" content="https://yuvarajdevs.tech/images/profile.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
     <script>
+      // Resolve the theme before first paint so there is no flash.
+      // Dark is the default for everyone: it is the brand, not a preference
+      // fallback. Light is a deliberate choice made with the header toggle, and
+      // once chosen it is remembered.
       (function () {
-        var key = 'yd-theme';
-        var stored = localStorage.getItem(key);
-        var theme =
-          stored === 'light' || stored === 'dark'
-            ? stored
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-        document.documentElement.classList.toggle('light', theme === 'light');
-        document.documentElement.dataset.theme = theme;
+        try {
+          var stored = localStorage.getItem('yd-theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          var root = document.documentElement;
+          root.classList.toggle('dark', theme === 'dark');
+          root.classList.toggle('light', theme === 'light');
+          root.dataset.theme = theme;
+        } catch (e) {
+          /* storage blocked — the dark default on <html> already applies */
+        }
       })();
     </script>
   </head>
-  <body class="bg-bg text-ink antialiased">
+  <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif">
+        This site needs JavaScript for navigation. You can still reach me at
+        <a href="mailto:dudukuruyuvaraj55@gmail.com">dudukuruyuvaraj55@gmail.com</a>.
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

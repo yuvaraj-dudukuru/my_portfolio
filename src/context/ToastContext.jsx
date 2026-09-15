@@ -1,8 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { CheckCircle2, XCircle, Info, X } from 'lucide-react';
-import { createContext, useCallback, useContext, useState } from 'react';
+import { CheckCircle2, Info, X, XCircle } from 'lucide-react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
-const ToastContext = createContext({ push: () => {} });
+const ToastContext = createContext({ push: () => {}, dismiss: () => {} });
 
 const ICONS = {
   success: CheckCircle2,
@@ -10,84 +9,99 @@ const ICONS = {
   info: Info,
 };
 
-// Green success / red error use standard conversion semantics while keeping the
-// neo-brutalist frame (thick border + hard shadow).
+// The icon and the wording carry the meaning; colour only reinforces it.
 const TONE = {
-  success: 'border-4 border-ink bg-green-400 text-black',
-  error: 'border-4 border-ink bg-red-500 text-white',
-  info: 'border-4 border-ink bg-bg-raised text-ink',
+  success: 'text-positive',
+  error: 'text-critical',
+  info: 'text-accent-text',
 };
 
 let idCounter = 0;
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
+  const timers = useRef(new Map());
 
   const dismiss = useCallback((id) => {
-    setToasts((cur) => cur.filter((t) => t.id !== id));
+    const timer = timers.current.get(id);
+    if (timer) {
+      clearTimeout(timer);
+      timers.current.delete(id);
+    }
+    setToasts((current) => current.filter((toast) => toast.id !== id));
   }, []);
 
   const push = useCallback(
-    ({ title, description, tone = 'success', duration = 4500 }) => {
+    ({ title, description, tone = 'info', duration = 6000 }) => {
       const id = ++idCounter;
-      setToasts((cur) => [...cur, { id, title, description, tone }]);
+      setToasts((current) => [...current, { id, title, description, tone }]);
       if (duration > 0) {
-        setTimeout(() => dismiss(id), duration);
+        timers.current.set(
+          id,
+          setTimeout(() => dismiss(id), duration),
+        );
       }
       return id;
     },
     [dismiss],
   );
 
+  // Clear any pending timers if the provider unmounts mid-flight.
+  useEffect(() => {
+    const pending = timers.current;
+    return () => {
+      pending.forEach((timer) => clearTimeout(timer));
+      pending.clear();
+    };
+  }, []);
+
   return (
     <ToastContext.Provider value={{ push, dismiss }}>
       {children}
-      {/* Render the viewport here too, so toasts work even outside <App> tree */}
-      <ToastViewportInternal toasts={toasts} dismiss={dismiss} />
+      <Viewport toasts={toasts} dismiss={dismiss} />
     </ToastContext.Provider>
   );
 }
 
-// Public no-op viewport — actual rendering happens via the internal one.
-// Kept exported so App.jsx can include it in JSX without breaking layout APIs.
+// Rendering lives with the provider so toasts survive route changes. This export
+// stays as a no-op because <App> mounts it for layout clarity.
 export function ToastViewport() {
   return null;
 }
 
-function ToastViewportInternal({ toasts, dismiss }) {
+function Viewport({ toasts, dismiss }) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-6 z-[100] flex flex-col items-center gap-2 px-4">
-      <AnimatePresence>
-        {toasts.map((t) => {
-          const Icon = ICONS[t.tone] ?? Info;
-          return (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 16, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.96 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              role="status"
-              className={`pointer-events-auto flex w-full max-w-sm items-start gap-3 border px-4 py-3 shadow-neo ${TONE[t.tone]}`}
+    <div
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex flex-col items-center gap-2 p-4 sm:items-end sm:p-6"
+      role="region"
+      aria-label="Notifications"
+    >
+      {toasts.map((toast) => {
+        const Icon = ICONS[toast.tone] ?? Info;
+        return (
+          <div
+            key={toast.id}
+            role={toast.tone === 'error' ? 'alert' : 'status'}
+            className="pointer-events-auto flex w-full max-w-sm animate-reveal-up items-start gap-3 border-2 border-hard bg-surface p-4 shadow-nb"
+          >
+            <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${TONE[toast.tone]}`} aria-hidden="true" />
+            <div className="flex-1 text-sm">
+              {toast.title ? <p className="font-medium text-ink">{toast.title}</p> : null}
+              {toast.description ? (
+                <p className="mt-1 leading-relaxed text-muted">{toast.description}</p>
+              ) : null}
+            </div>
+            <button
+              type="button"
+              onClick={() => dismiss(toast.id)}
+              aria-label="Dismiss notification"
+              className="-m-1 cursor-pointer rounded p-1 text-faint transition-colors hover:text-ink"
             >
-              <Icon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-              <div className="flex-1 text-sm">
-                {t.title && <p className="font-semibold">{t.title}</p>}
-                {t.description && (
-                  <p className="mt-0.5 opacity-80">{t.description}</p>
-                )}
-              </div>
-              <button
-                onClick={() => dismiss(t.id)}
-                aria-label="Dismiss notification"
-                className="font-bold text-ink hover:underline focus-ring"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }

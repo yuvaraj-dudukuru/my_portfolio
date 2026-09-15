@@ -5,16 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && node scripts/generate-seo.mjs",
+    "preview": "vite preview",
+    "build:app": "vite build",
+    "seo": "node scripts/generate-seo.mjs",
+    "test": "vite build --ssr scripts/ssr-smoke.jsx --outDir node_modules/.ssr-smoke --logLevel error && node node_modules/.ssr-smoke/ssr-smoke.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "framer-motion": "^11.11.17",
     "lucide-react": "^0.460.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.7.0",
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {

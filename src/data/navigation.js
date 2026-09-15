@@ -1,12 +1,13 @@
-// Top-nav links. `to` is an in-page anchor on the home route.
+// Primary navigation. Order is the site's information architecture, and the
+// same list drives the header, the mobile sheet and the footer.
 
 export const navLinks = [
-  { id: 'home', label: 'Home', to: '#hero' },
-  { id: 'about', label: 'About', to: '#about' },
-  { id: 'services', label: 'Services', to: '#services' },
-  { id: 'training', label: 'Training', to: '#training' },
-  { id: 'projects', label: 'Projects', to: '#projects' },
-  { id: 'contact', label: 'Contact', to: '#contact' },
+  { id: 'work', label: 'Work', to: '/work' },
+  { id: 'labs', label: 'Labs', to: '/labs' },
+  { id: 'learn', label: 'Learn', to: '/learn' },
+  { id: 'writing', label: 'Writing', to: '/writing' },
+  { id: 'now', label: 'Now', to: '/now' },
+  { id: 'about', label: 'About', to: '/about' },
 ];
 
 export default navLinks;

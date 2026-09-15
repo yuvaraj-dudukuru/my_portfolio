@@ -1,30 +1,51 @@
-import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button.jsx';
+import { navLinks } from '../data/navigation.js';
+import Seo from '../seo/Seo.jsx';
+import { pageMeta } from '../seo/routes.js';
 
 export default function NotFound() {
   return (
-    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 pt-24">
-      <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden="true" />
-      <div className="relative max-w-xl text-center">
-        <p className="heading-display text-7xl font-semibold gradient-text">404</p>
-        <h1 className="heading-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">
-          That page wandered off.
+    <>
+      <Seo
+        title={pageMeta.notFound.title}
+        description={pageMeta.notFound.description}
+        path="/404"
+        noindex
+      />
+
+      <div className="shell flex min-h-[70vh] flex-col justify-center py-28">
+        <p className="label">Error 404</p>
+        <h1 className="mt-5 max-w-2xl text-display-lg font-extrabold uppercase tracking-tight text-ink">
+          That page does not exist
         </h1>
-        <p className="mt-3 text-base text-ink-muted">
-          The link you followed might be broken, or the page may have moved.
-          Let&apos;s get you back to something useful.
+        <p className="prose-body mt-5 max-w-prose">
+          Either the link is wrong, or something moved when this site was rebuilt. Everything is one
+          of these:
         </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <Button as={Link} to="/" size="md">
-            <ArrowLeft className="h-4 w-4" />
+
+        <ul className="mt-8 flex flex-wrap gap-2">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <Link
+                to={link.to}
+                className="inline-flex h-10 items-center rounded border-2 border-hard px-3.5 text-sm text-muted transition-colors hover:border-hard hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button to="/" size="lg">
             Back home
           </Button>
-          <Button as={Link} to="/#projects" size="md" variant="secondary">
-            See projects
+          <Button to="/contact" size="lg" variant="secondary">
+            Report a broken link
           </Button>
         </div>
       </div>
-    </section>
+    </>
   );
 }
