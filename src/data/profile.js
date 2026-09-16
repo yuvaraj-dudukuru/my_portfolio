@@ -14,8 +14,9 @@ export const profile = {
   // No email address lives in this file. A published address belongs in
   // src/config/legal.js and reaches the page only through <EmailLink>, which
   // assembles it after mount so it never ships inside the prerendered HTML.
-  whatsappNumber: '+91 63050 17247',
-  whatsappUrl: 'https://wa.me/916305017247',
+  // The WhatsApp number is not here either: it is a personal mobile, so it lives
+  // split into parts in src/config/legal.js and is assembled after mount by
+  // <WhatsAppLink>, never in a prerendered document.
   resumeUrl: '/resume.pdf',
 
   socials: {

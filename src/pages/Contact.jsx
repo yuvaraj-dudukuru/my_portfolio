@@ -4,13 +4,15 @@ import BusinessDetails from '../components/legal/BusinessDetails.jsx';
 import EmailLink from '../components/ui/EmailLink.jsx';
 import PageHeader from '../components/ui/PageHeader.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
+import WhatsAppLink from '../components/ui/WhatsAppLink.jsx';
 import { profile } from '../data/profile.js';
 import Seo from '../seo/Seo.jsx';
 import { pageMeta } from '../seo/routes.js';
 
-// The email channel is the odd one out: it renders through <EmailLink>, which
-// is a contact-form link until the address has been assembled client-side. The
-// rest are ordinary anchors.
+// Email and WhatsApp are the odd ones out: both render through a component that
+// assembles the real destination after mount, so neither a personal address nor
+// a personal number appears in a prerendered document. Until then each is a
+// link to the form on this page. The rest are ordinary anchors.
 const channels = [
   {
     id: 'email',
@@ -22,10 +24,9 @@ const channels = [
   {
     id: 'whatsapp',
     label: 'WhatsApp',
-    value: profile.whatsappNumber,
-    href: profile.whatsappUrl,
+    value: 'Fastest route for a quick question',
     icon: MessageCircle,
-    note: 'Fastest, best for course questions',
+    note: 'Opens WhatsApp, or the form on this page',
   },
   {
     id: 'linkedin',
@@ -99,6 +100,10 @@ export default function Contact() {
               <EmailLink key={channel.id} className={CHANNEL_CLASS}>
                 <ChannelBody channel={channel} />
               </EmailLink>
+            ) : channel.id === 'whatsapp' ? (
+              <WhatsAppLink key={channel.id} className={CHANNEL_CLASS}>
+                <ChannelBody channel={channel} />
+              </WhatsAppLink>
             ) : (
               <a
                 key={channel.id}

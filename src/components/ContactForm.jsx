@@ -5,6 +5,7 @@ import { courses, mentoring } from '../data/courses.js';
 import { profile } from '../data/profile.js';
 import { useToast } from '../context/ToastContext.jsx';
 import Button from './ui/Button.jsx';
+import WhatsAppLink from './ui/WhatsAppLink.jsx';
 
 // Options are derived from the course data, so every "enquire" CTA on the site
 // lands on a subject that actually exists in this list.
@@ -182,9 +183,7 @@ export default function ContactForm() {
         <p className="mt-4 text-display-sm font-extrabold uppercase tracking-tight text-ink">Thanks — it arrived.</p>
         <p className="prose-body mt-3">
           I read everything that comes in and usually reply within a day or two. If it is urgent,{' '}
-          <a href={profile.whatsappUrl} target="_blank" rel="noopener noreferrer" className="link-underline text-ink">
-            WhatsApp
-          </a>{' '}
+          <WhatsAppLink className="link-underline text-ink" />{' '}
           is faster.
         </p>
         <Button variant="secondary" className="mt-7" onClick={() => setStatus('idle')}>

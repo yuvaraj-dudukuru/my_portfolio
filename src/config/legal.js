@@ -74,6 +74,12 @@ export const legal = {
     businessEmail: '{{BUSINESS_EMAIL}}',
     /** @type {string | null} Optional under the E-Commerce Rules; omitted when null. */
     phone: null,
+    /**
+     * Split into parts so the full number is not a single greppable string, and
+     * only ever assembled client-side by <WhatsAppLink>. It is a personal
+     * mobile, so it must not appear in a prerendered document.
+     */
+    whatsapp: { countryCode: '91', national: '6305017247' },
     fallbackPath: '/contact',
   },
 
