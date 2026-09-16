@@ -192,7 +192,7 @@ export default function Privacy() {
                     rel="noopener noreferrer"
                     className="link-underline text-ink"
                   >
-                    Their privacy policy
+                    {processor.name} privacy policy
                   </a>
                   .
                 </dd>
