@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { navLinks } from '../../data/navigation.js';
 import { profile } from '../../data/profile.js';
 import Button from '../ui/Button.jsx';
+import EmailLink from '../ui/EmailLink.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
@@ -161,12 +162,10 @@ export default function Header() {
               <Button to="/contact" size="lg" className="w-full">
                 Get in touch
               </Button>
-              <a
-                href={`mailto:${profile.email}`}
+              <EmailLink
                 className="py-2 text-center font-mono text-xs uppercase tracking-[0.12em] text-faint transition-colors hover:text-ink"
-              >
-                {profile.email}
-              </a>
+                fallbackLabel="Email"
+              />
             </div>
           </div>
         </div>
