@@ -34,6 +34,11 @@ import Work from '../src/pages/Work.jsx';
 import WorkDetail from '../src/pages/WorkDetail.jsx';
 import Writing from '../src/pages/Writing.jsx';
 
+import Cookies from '../src/pages/legal/Cookies.jsx';
+import Privacy from '../src/pages/legal/Privacy.jsx';
+import RefundPolicy from '../src/pages/legal/RefundPolicy.jsx';
+import Terms from '../src/pages/legal/Terms.jsx';
+
 import { courses } from '../src/data/courses.js';
 import { labs } from '../src/data/labs.js';
 import { work } from '../src/data/work.js';
@@ -50,6 +55,10 @@ const ROUTES = [
   '/now',
   '/about',
   '/contact',
+  '/privacy',
+  '/terms',
+  '/refund-policy',
+  '/cookies',
   '/totally-missing',
 ];
 
@@ -77,6 +86,10 @@ function Tree({ route }) {
               <Route path="/now" element={<Now />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/cookies" element={<Cookies />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

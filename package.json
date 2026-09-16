@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo.mjs",
+    "build": "vite build && node scripts/generate-seo.mjs && node scripts/check-placeholders.mjs",
     "preview": "vite preview",
     "build:app": "vite build",
     "seo": "node scripts/generate-seo.mjs",
+    "check:legal": "node scripts/check-placeholders.mjs",
     "test": "vite build --ssr scripts/ssr-smoke.jsx --outDir node_modules/.ssr-smoke --logLevel error && node node_modules/.ssr-smoke/ssr-smoke.js"
   },
   "dependencies": {

@@ -1,8 +1,10 @@
 import { ArrowRight, GraduationCap, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { profile } from '../../data/profile.js';
+import EmailLink from '../ui/EmailLink.jsx';
 import Reveal from '../ui/Reveal.jsx';
 import SectionHeader from '../ui/SectionHeader.jsx';
+import WhatsAppLink from '../ui/WhatsAppLink.jsx';
 
 // Two audiences, two destinations, one section. Recruiters and collaborators go
 // left; students go right. Neither path is buried behind the other.
@@ -58,20 +60,14 @@ export default function ContactCta() {
       </div>
 
       <Reveal className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-2">
-        <a
-          href={`mailto:${profile.email}`}
+        <EmailLink
           className="link-underline rounded font-mono text-xs text-muted transition-colors hover:text-ink"
-        >
-          {profile.email}
-        </a>
-        <a
-          href={profile.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          fallbackLabel="Email"
+        />
+        <WhatsAppLink
           className="link-underline rounded font-mono text-xs text-muted transition-colors hover:text-ink"
-        >
-          WhatsApp {profile.whatsappNumber}
-        </a>
+          showNumber
+        />
       </Reveal>
     </section>
   );

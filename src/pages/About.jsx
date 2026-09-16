@@ -1,5 +1,6 @@
 import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import EmailLink from '../components/ui/EmailLink.jsx';
 import PageHeader from '../components/ui/PageHeader.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
 import { capabilities } from '../data/capabilities.js';
@@ -16,7 +17,6 @@ const links = [
     href: profile.socials.linkedin,
     icon: Linkedin,
   },
-  { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
   { label: 'Résumé', value: 'PDF', href: profile.resumeUrl, icon: FileText },
 ];
 
@@ -138,6 +138,19 @@ export default function About() {
           </dl>
 
           <ul className="flex flex-col gap-3 border-t-2 border-hard pt-5">
+            <li>
+              <EmailLink
+                className="group flex items-center gap-3 rounded text-sm text-muted transition-colors hover:text-ink"
+                fallbackLabel="Contact form"
+              >
+                <Mail className="h-4 w-4 shrink-0 text-faint" aria-hidden="true" />
+                <span className="min-w-0 flex-1 truncate">Email</span>
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 shrink-0 text-faint transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </EmailLink>
+            </li>
             {links.map((link) => (
               <li key={link.label}>
                 <a

@@ -15,6 +15,10 @@ import { profile } from '../data/profile.js';
 const PERSON_ID = `${site.url}/#person`;
 
 export function personSchema() {
+  // No `email` property. JSON-LD is baked into every prerendered document, so an
+  // address here would be published in plain text in exactly the place a
+  // harvester reads first — which is the problem <EmailLink> exists to solve.
+  // Contact routes through /contact instead.
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -23,7 +27,6 @@ export function personSchema() {
     url: site.url,
     image: absoluteUrl(site.ogImage),
     jobTitle: profile.title,
-    email: `mailto:${profile.email}`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Hyderabad',
@@ -41,6 +44,12 @@ export function personSchema() {
     worksFor: {
       '@type': 'Organization',
       name: 'Lumora Space',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Enquiries',
+      url: absoluteUrl('/contact'),
+      availableLanguage: ['en'],
     },
   };
 }

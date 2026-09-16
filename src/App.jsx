@@ -23,6 +23,11 @@ const Work = lazy(() => import('./pages/Work.jsx'));
 const WorkDetail = lazy(() => import('./pages/WorkDetail.jsx'));
 const Writing = lazy(() => import('./pages/Writing.jsx'));
 
+const Cookies = lazy(() => import('./pages/legal/Cookies.jsx'));
+const Privacy = lazy(() => import('./pages/legal/Privacy.jsx'));
+const RefundPolicy = lazy(() => import('./pages/legal/RefundPolicy.jsx'));
+const Terms = lazy(() => import('./pages/legal/Terms.jsx'));
+
 // Reserves the header offset and page height so a chunk load does not collapse
 // the layout and shift what is already painted.
 function RouteFallback() {
@@ -89,6 +94,11 @@ export default function App() {
               <Route path="/now" element={<Now />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/cookies" element={<Cookies />} />
 
               {/* Legacy single-page anchors kept alive so old links do not 404. */}
               <Route path="/projects" element={<Navigate to="/work" replace />} />

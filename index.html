@@ -73,10 +73,20 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- No email address here on purpose: this block is copied into every
+         prerendered document, so an address in it would be published 19 times
+         over in the most scrapable place on the site. The contact page is the
+         contact route. -->
     <noscript>
-      <div style="padding: 2rem; font-family: system-ui, sans-serif">
-        This site needs JavaScript for navigation. You can still reach me at
-        <a href="mailto:dudukuruyuvaraj55@gmail.com">dudukuruyuvaraj55@gmail.com</a>.
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <p>
+          This site needs JavaScript for navigation. To get in touch, go to
+          <a href="/contact">yuvarajdevs.tech/contact</a>.
+        </p>
+        <p>
+          <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> ·
+          <a href="/refund-policy">Refund Policy</a> · <a href="/cookies">Cookie Policy</a>
+        </p>
       </div>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>

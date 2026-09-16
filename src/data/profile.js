@@ -11,9 +11,12 @@ export const profile = {
   location: 'Hyderabad, India',
   timezone: 'IST (UTC+5:30)',
 
-  email: 'dudukuruyuvaraj55@gmail.com',
-  whatsappNumber: '+91 63050 17247',
-  whatsappUrl: 'https://wa.me/916305017247',
+  // No email address lives in this file. A published address belongs in
+  // src/config/legal.js and reaches the page only through <EmailLink>, which
+  // assembles it after mount so it never ships inside the prerendered HTML.
+  // The WhatsApp number is not here either: it is a personal mobile, so it lives
+  // split into parts in src/config/legal.js and is assembled after mount by
+  // <WhatsAppLink>, never in a prerendered document.
   resumeUrl: '/resume.pdf',
 
   socials: {
@@ -30,7 +33,7 @@ export const profile = {
   ],
 
   roles: [
-    { role: 'Founder', org: 'Lumora Space', period: 'Current', current: true },
+    { role: 'Co-Founder', org: 'Lumora Space', period: 'Current', current: true },
     { role: 'Founder', org: 'Progressis 2', period: 'Current', current: true },
     { role: 'COO', org: 'Fraylon Technologies', period: 'Past', current: false },
   ],

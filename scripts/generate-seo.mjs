@@ -66,6 +66,11 @@ function buildEntries() {
     { meta: pageMeta.about, schema: [personSchema()] },
     { meta: pageMeta.contact, schema: [] },
 
+    { meta: pageMeta.privacy, schema: [] },
+    { meta: pageMeta.terms, schema: [] },
+    { meta: pageMeta.refundPolicy, schema: [] },
+    { meta: pageMeta.cookies, schema: [] },
+
     ...work.map((item) => {
       const meta = workMeta(item);
       return {

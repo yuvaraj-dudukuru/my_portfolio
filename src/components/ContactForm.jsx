@@ -1,10 +1,11 @@
 import { Loader2, Send } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { courses, mentoring } from '../data/courses.js';
 import { profile } from '../data/profile.js';
 import { useToast } from '../context/ToastContext.jsx';
 import Button from './ui/Button.jsx';
+import WhatsAppLink from './ui/WhatsAppLink.jsx';
 
 // Options are derived from the course data, so every "enquire" CTA on the site
 // lands on a subject that actually exists in this list.
@@ -170,7 +171,7 @@ export default function ContactForm() {
       push({
         tone: 'error',
         title: 'That did not send',
-        description: `Email me directly at ${profile.email}.`,
+        description: 'Try again in a moment, or message me on WhatsApp — the link is beside this form.',
       });
     }
   };
@@ -182,9 +183,7 @@ export default function ContactForm() {
         <p className="mt-4 text-display-sm font-extrabold uppercase tracking-tight text-ink">Thanks — it arrived.</p>
         <p className="prose-body mt-3">
           I read everything that comes in and usually reply within a day or two. If it is urgent,{' '}
-          <a href={profile.whatsappUrl} target="_blank" rel="noopener noreferrer" className="link-underline text-ink">
-            WhatsApp
-          </a>{' '}
+          <WhatsAppLink className="link-underline text-ink" />{' '}
           is faster.
         </p>
         <Button variant="secondary" className="mt-7" onClick={() => setStatus('idle')}>
@@ -256,12 +255,17 @@ export default function ContactForm() {
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" ref={honeypotRef} />
       </div>
 
+      {/* Said before the button, not after it: what happens to the four fields
+          above, and where the full answer lives. No marketing checkbox here —
+          there is no list to join, so there is nothing to bundle. */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-t-2 border-hard pt-6">
-        <p className="text-xs text-faint">
-          Or email{' '}
-          <a href={`mailto:${profile.email}`} className="link-underline text-muted">
-            {profile.email}
-          </a>
+        <p className="max-w-sm text-xs leading-relaxed text-faint">
+          Your name, email and message are used only to reply to you, and are never added to a
+          mailing list.{' '}
+          <Link to="/privacy" className="link-underline text-muted">
+            Privacy policy
+          </Link>
+          .
         </p>
         <Button type="submit" size="lg" disabled={status === 'sending'}>
           {status === 'sending' ? (

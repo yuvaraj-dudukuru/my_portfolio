@@ -1,5 +1,7 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BusinessDetails from '../legal/BusinessDetails.jsx';
+import EmailLink from '../ui/EmailLink.jsx';
 import { navLinks } from '../../data/navigation.js';
 import { profile } from '../../data/profile.js';
 
@@ -11,7 +13,17 @@ const elsewhere = [
     icon: Linkedin,
     value: profile.socials.linkedinHandle,
   },
-  { label: 'Email', href: `mailto:${profile.email}`, icon: Mail, value: profile.email },
+];
+
+// Every route carries these, so a policy is never more than one click away.
+// "Cookie Settings" points at /cookies today and becomes the button that opens
+// the preference panel once there is anything to set (Phase 2).
+const legalLinks = [
+  { label: 'Privacy', to: '/privacy' },
+  { label: 'Terms', to: '/terms' },
+  { label: 'Refund Policy', to: '/refund-policy' },
+  { label: 'Cookie Policy', to: '/cookies' },
+  { label: 'Cookie Settings', to: '/cookies#your-choices' },
 ];
 
 export default function Footer() {
@@ -54,8 +66,8 @@ export default function Footer() {
               <li key={item.label}>
                 <a
                   href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2.5 rounded text-sm text-muted transition-colors hover:text-ink"
                 >
                   <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -68,6 +80,15 @@ export default function Footer() {
               </li>
             ))}
             <li>
+              <EmailLink
+                className="group inline-flex items-center gap-2.5 rounded text-sm text-muted transition-colors hover:text-ink"
+                fallbackLabel="Email"
+              >
+                <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="truncate">Email</span>
+              </EmailLink>
+            </li>
+            <li>
               <a
                 href={profile.resumeUrl}
                 className="rounded text-sm text-muted transition-colors hover:text-ink"
@@ -77,6 +98,27 @@ export default function Footer() {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div className="border-t-2 border-hard">
+        <BusinessDetails className="shell py-10" />
+      </div>
+
+      <div className="border-t-2 border-hard">
+        <nav aria-label="Legal" className="shell py-6">
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            {legalLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  to={link.to}
+                  className="rounded font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-muted transition-colors hover:text-ink"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
       <div className="border-t-2 border-hard">
