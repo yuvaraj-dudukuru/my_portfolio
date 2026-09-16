@@ -20,16 +20,60 @@ import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { legal, unresolvedPlaceholders } from '../src/config/legal.js';
+import { isPlaceholder, legal, unresolvedPlaceholders } from '../src/config/legal.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 
 /**
+ * Values that must be real before the site is deployed. A legal page carrying
+ * "[ registered address — to be confirmed ]" in production is worse than no
+ * legal page: it is a published document that visibly does not know who wrote
+ * it. These block a production build; everything else only warns.
+ */
+const REQUIRED_FOR_PRODUCTION = [
+  ['Legal entity name', legal.entity.legalName],
+  ['Entity registration number (CIN/LLPIN)', legal.entity.registrationNumber],
+  ['Registered address', legal.entity.registeredAddress],
+  ['GSTIN', legal.gst.gstin],
+  ['Grievance Officer name', legal.grievanceOfficer.name],
+  ['Grievance Officer email', legal.grievanceOfficer.email],
+  ['Business email', legal.contact.businessEmail],
+];
+
+/**
+ * "Production" means a build that can actually reach visitors: Vercel, CI, an
+ * explicit NODE_ENV=production, or `--strict` for testing this path locally.
+ * A developer running `npm run build` on their own machine gets the warning
+ * instead, so the site stays buildable while the values are being chased.
+ */
+function isProductionBuild() {
+  return Boolean(
+    process.argv.includes('--strict') ||
+      process.env.VERCEL ||
+      process.env.CI ||
+      process.env.NODE_ENV === 'production',
+  );
+}
+
+/**
  * Addresses that must never appear in a built document. Kept split so this
  * file is not itself a harvestable copy of the thing it is guarding.
  */
-const FORBIDDEN_IN_OUTPUT = [['dudukuruyuvaraj55', 'gmail.com'].join('@')];
+const FORBIDDEN_IN_OUTPUT = (() => {
+  const cc = '9' + '1';
+  const n = '63050' + '17247';
+  return [
+    { what: 'personal email address', value: ['dudukuruyuvaraj55', 'gmail.com'].join('@') },
+    { what: 'personal email address', value: ['dudukuruyuvaraj', 'gmail.com'].join('@') },
+    // The personal mobile, in every shape it could be written: wa.me link,
+    // international, spaced, and bare national.
+    { what: 'personal phone number (wa.me link)', value: `wa.me/${cc}${n}` },
+    { what: 'personal phone number', value: `+${cc}${n}` },
+    { what: 'personal phone number', value: `+${cc} ${n.slice(0, 5)} ${n.slice(5)}` },
+    { what: 'personal phone number', value: n },
+  ];
+})();
 
 /**
  * Free-mail domains that should not appear in a published asset. Used for a
@@ -94,6 +138,24 @@ async function main() {
   await warnAboutAssets();
 
   const failures = [];
+
+  const blocking = REQUIRED_FOR_PRODUCTION.filter(([, value]) => isPlaceholder(value));
+  if (blocking.length) {
+    const production = isProductionBuild();
+    const lines = blocking.map(([label, value]) => `  ${label}: ${value}`).join('\n');
+    if (production) {
+      failures.push(
+        `${blocking.length} value(s) required before deployment are still placeholders:\n${lines}\n` +
+          '  Legal pages must not ship to production showing "to be confirmed".',
+      );
+    } else {
+      console.warn(
+        `[legal] WARNING: ${blocking.length} value(s) required for deployment are still placeholders:\n${lines}\n` +
+          '          This build is allowed because it is not a production build.\n' +
+          '          A production build (CI, Vercel, NODE_ENV=production, or --strict) will FAIL until they are set.',
+      );
+    }
+  }
   for await (const file of htmlFiles(dist)) {
     const html = await readFile(file, 'utf8');
     const where = relative(root, file);
@@ -101,9 +163,10 @@ async function main() {
     const leakedToken = html.match(/\{\{[A-Z0-9_]+\}\}/);
     if (leakedToken) failures.push(`${where}: raw placeholder ${leakedToken[0]} in output`);
 
-    for (const forbidden of FORBIDDEN_IN_OUTPUT) {
-      if (html.includes(forbidden)) failures.push(`${where}: personal address published in output`);
-    }
+    const leaked = new Set(
+      FORBIDDEN_IN_OUTPUT.filter(({ value }) => html.includes(value)).map(({ what }) => what),
+    );
+    for (const what of leaked) failures.push(`${where}: ${what} published in output`);
   }
 
   if (failures.length) {
