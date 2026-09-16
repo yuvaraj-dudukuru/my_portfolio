@@ -77,6 +77,34 @@ export const pageMeta = {
       'Get in touch about engineering work, collaboration, internships, courses or mentoring.',
     priority: 0.7,
   },
+  privacy: {
+    path: '/privacy',
+    title: 'Privacy Policy',
+    description:
+      'What this site collects, why, who else sees it, and your rights under the DPDP Act 2023. Short, because the site collects very little.',
+    priority: 0.3,
+  },
+  terms: {
+    path: '/terms',
+    title: 'Terms of Service',
+    description:
+      'The agreement between you and Lumora Space covering courses, mentoring and use of this site. Governing law: India.',
+    priority: 0.3,
+  },
+  refundPolicy: {
+    path: '/refund-policy',
+    title: 'Refund & Cancellation Policy',
+    description:
+      'When you get your money back for a course or mentoring session, how much, and how long it takes.',
+    priority: 0.3,
+  },
+  cookies: {
+    path: '/cookies',
+    title: 'Cookie Policy',
+    description:
+      'A complete list of what this site stores in your browser. It sets no cookies at all.',
+    priority: 0.3,
+  },
   notFound: {
     path: '/404',
     title: 'Page not found',

@@ -218,6 +218,63 @@
     @apply mt-4;
   }
 
+  /* Long-form legal copy. Policy pages are mostly prose, lists and definition
+     lists, so the rules live here rather than being repeated as utility classes
+     on every paragraph of four documents. */
+  .legal-prose {
+    @apply text-[0.9375rem] leading-[1.75] text-muted sm:text-base;
+  }
+
+  .legal-prose p + p,
+  .legal-prose ul,
+  .legal-prose ol,
+  .legal-prose dl,
+  .legal-prose p + .legal-note {
+    @apply mt-4;
+  }
+
+  .legal-prose ul {
+    @apply list-disc pl-5;
+  }
+
+  .legal-prose ol {
+    @apply list-decimal pl-5;
+  }
+
+  .legal-prose li + li {
+    @apply mt-2;
+  }
+
+  .legal-prose li::marker {
+    color: rgb(var(--c-faint));
+  }
+
+  .legal-prose strong {
+    @apply font-semibold text-ink;
+  }
+
+  .legal-prose h3 {
+    @apply mt-8 text-base font-semibold text-ink;
+  }
+
+  .legal-prose h3 + p,
+  .legal-prose h3 + ul {
+    @apply mt-3;
+  }
+
+  .legal-prose dt {
+    @apply mt-4 text-sm font-semibold text-ink;
+  }
+
+  .legal-prose dd {
+    @apply mt-1;
+  }
+
+  /* A bordered aside inside a policy — "what this means in practice". */
+  .legal-note {
+    @apply border-2 border-hard bg-bg-subtle p-5 text-[0.9375rem] leading-relaxed;
+  }
+
   /* Technical grid, masked so it never competes with content. */
   .grid-field {
     background-image:
@@ -314,6 +371,58 @@
   .nb-press:hover:not(:disabled),
   .card-interactive:hover {
     transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print
+   A policy is a document people file, forward to a lawyer, or keep a copy of
+   before agreeing to it. Printing one should produce the document and nothing
+   else: no fixed header, no navigation, no table of contents, black on white,
+   and link targets spelled out because a printed underline points nowhere.
+--------------------------------------------------------------------------- */
+@media print {
+  .legal-doc {
+    color: #000;
+    background: #fff;
+  }
+
+  .legal-doc header[class*='shell'],
+  .legal-doc section {
+    break-inside: avoid-page;
+  }
+
+  /* The site header is `fixed`; left alone it prints on top of the first page
+     of the document. Unfixing it is right for every printed page, not just
+     these, so it is not scoped to .legal-doc. */
+  header.fixed {
+    position: static !important;
+  }
+
+  .legal-doc .legal-toc,
+  .legal-doc [data-draft-banner] {
+    display: none !important;
+  }
+
+  .legal-doc,
+  .legal-doc * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: #000 !important;
+  }
+
+  .legal-doc .legal-body {
+    max-width: none;
+  }
+
+  /* Spell out where a link actually goes — but only for real destinations, not
+     for in-page anchors, which mean nothing on paper. */
+  .legal-doc a[href^='http']::after,
+  .legal-doc a[href^='mailto']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
   }
 }
 
