@@ -1,20 +1,26 @@
 import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm.jsx';
+import BusinessDetails from '../components/legal/BusinessDetails.jsx';
+import EmailLink from '../components/ui/EmailLink.jsx';
 import PageHeader from '../components/ui/PageHeader.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
 import { profile } from '../data/profile.js';
 import Seo from '../seo/Seo.jsx';
 import { pageMeta } from '../seo/routes.js';
 
+// The email channel is the odd one out: it renders through <EmailLink>, which
+// is a contact-form link until the address has been assembled client-side. The
+// rest are ordinary anchors.
 const channels = [
   {
+    id: 'email',
     label: 'Email',
-    value: profile.email,
-    href: `mailto:${profile.email}`,
+    value: 'Best for anything with detail',
     icon: Mail,
-    note: 'Best for anything with detail',
+    note: 'Opens your mail app, or the form on this page',
   },
   {
+    id: 'whatsapp',
     label: 'WhatsApp',
     value: profile.whatsappNumber,
     href: profile.whatsappUrl,
@@ -22,6 +28,7 @@ const channels = [
     note: 'Fastest, best for course questions',
   },
   {
+    id: 'linkedin',
     label: 'LinkedIn',
     value: profile.socials.linkedinHandle,
     href: profile.socials.linkedin,
@@ -29,6 +36,7 @@ const channels = [
     note: 'Professional enquiries',
   },
   {
+    id: 'github',
     label: 'GitHub',
     value: profile.socials.githubHandle,
     href: profile.socials.github,
@@ -36,6 +44,27 @@ const channels = [
     note: 'Code, issues and pull requests',
   },
 ];
+
+const CHANNEL_CLASS = 'card-interactive group flex items-center gap-4 p-5';
+
+function ChannelBody({ channel }) {
+  return (
+    <>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded border-2 border-hard text-faint transition-colors group-hover:border-accent group-hover:text-accent-text">
+        <channel.icon className="h-4 w-4" aria-hidden="true" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="label block">{channel.label}</span>
+        <span className="mt-1 block truncate text-sm text-ink">{channel.value}</span>
+        <span className="mt-0.5 block text-xs text-faint">{channel.note}</span>
+      </span>
+      <ArrowUpRight
+        className="h-4 w-4 shrink-0 text-faint transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        aria-hidden="true"
+      />
+    </>
+  );
+}
 
 export default function Contact() {
   return (
@@ -65,34 +94,33 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={80} className="flex flex-col gap-3">
-          {channels.map((channel) => (
-            <a
-              key={channel.label}
-              href={channel.href}
-              target={channel.href.startsWith('http') ? '_blank' : undefined}
-              rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="card-interactive group flex items-center gap-4 p-5"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded border-2 border-hard text-faint transition-colors group-hover:border-accent group-hover:text-accent-text">
-                <channel.icon className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="label block">{channel.label}</span>
-                <span className="mt-1 block truncate text-sm text-ink">{channel.value}</span>
-                <span className="mt-0.5 block text-xs text-faint">{channel.note}</span>
-              </span>
-              <ArrowUpRight
-                className="h-4 w-4 shrink-0 text-faint transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </a>
-          ))}
+          {channels.map((channel) =>
+            channel.id === 'email' ? (
+              <EmailLink key={channel.id} className={CHANNEL_CLASS}>
+                <ChannelBody channel={channel} />
+              </EmailLink>
+            ) : (
+              <a
+                key={channel.id}
+                href={channel.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={CHANNEL_CLASS}
+              >
+                <ChannelBody channel={channel} />
+              </a>
+            ),
+          )}
 
           <p className="prose-body mt-3 text-xs">
             No newsletter, no automated sequence. Messages go straight to me.
           </p>
         </Reveal>
       </div>
+
+      <section className="shell border-t-2 border-hard py-12" aria-labelledby="business-details">
+        <BusinessDetails variant="full" headingId="business-details" />
+      </section>
     </>
   );
 }
