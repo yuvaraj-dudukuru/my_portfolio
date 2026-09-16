@@ -3,12 +3,27 @@
 Everything waiting on a decision or a value from the site owner, plus every
 default chosen on their behalf under the Q5–Q12 delegation.
 
-**Last updated:** 2026-09-17 · **Phase:** 1 complete
+**Last updated:** 2026-09-17 · **Phase:** 1 complete, review changes applied
 
-Run `npm run check:legal` at any time to print the placeholders still
-outstanding. It also runs as the last step of `npm run build`, and **fails the
-build** if a raw `{{TOKEN}}` or a personal email address ever reaches a
-generated HTML file.
+> **The Phase 1 review supplied no values.** Every item in the review's
+> "Confirmed values" list arrived still bracketed — `[e.g. Lumora Space Private
+> Limited]`, `[Private Limited / LLP]`, `[value]`, `[YES … | NO …]`, `[N]`. Per
+> the instruction to "leave any still-bracketed item as `{{TOKEN}}`",
+> `src/config/legal.js` is unchanged and all 15 placeholders below are still
+> outstanding.
+
+Run `npm run check:legal` at any time to print what is outstanding. It also runs
+as the last step of `npm run build`, with two levels of enforcement:
+
+| Condition | Local build | Production build |
+|---|---|---|
+| A raw `{{TOKEN}}` or a personal email/phone reaches a generated HTML file | **FAIL** | **FAIL** |
+| One of the 7 deployment-critical values is unset (§1, marked 🚩) | warn | **FAIL** |
+| Any other placeholder unset | warn | warn |
+| `dist/resume.pdf` contains a personal address | warn | warn |
+
+"Production" means `CI`, `VERCEL`, `NODE_ENV=production`, or `--strict`. Test
+the failing path locally with `node scripts/check-placeholders.mjs --strict`.
 
 ---
 
@@ -20,14 +35,14 @@ confirmed ]` — never as raw braces, and never as a guess.
 
 | Token | Config path | Used on | Notes |
 |---|---|---|---|
-| `{{LEGAL_ENTITY_NAME}}` | `entity.legalName` | Privacy, Terms, Refund, footer, /contact | Full registered name of Lumora Space. Your example was *"Lumora Space Private Limited"* — **not** used, because it was an example, not a confirmation. |
+| 🚩 `{{LEGAL_ENTITY_NAME}}` | `entity.legalName` | Privacy, Terms, Refund, footer, /contact | Full registered name of Lumora Space. Your example was *"Lumora Space Private Limited"* — **not** used, because it was an example, not a confirmation. |
 | `{{ENTITY_TYPE}}` | `entity.type` | Privacy, Terms, /contact | Pvt Ltd / LLP / Partnership. |
-| `{{ENTITY_REG_NO}}` | `entity.registrationNumber` | Privacy, Terms, footer, /contact | CIN if Pvt Ltd, LLPIN if LLP. |
-| `{{REGISTERED_ADDRESS}}` | `entity.registeredAddress` | Privacy, Terms, Refund, footer, /contact | Registered office as filed with the MCA. |
-| `{{GSTIN}}` | `gst.gstin` | Terms, footer, /contact | Registration itself is confirmed; the number is not. |
-| `{{BUSINESS_EMAIL}}` | `contact.businessEmail` | Everywhere an address appears | **Until this is set, every email affordance on the site is a link to `/contact` instead.** Nothing is broken by leaving it — see §3. |
-| `{{GRIEVANCE_OFFICER_NAME}}` | `grievanceOfficer.name` | Privacy, Terms, Refund, footer, /contact | Required by DPDP s.13. |
-| `{{GRIEVANCE_EMAIL}}` | `grievanceOfficer.email` | Privacy, Terms, Refund, footer, /contact | Should be a role address, not a personal one. |
+| 🚩 `{{ENTITY_REG_NO}}` | `entity.registrationNumber` | Privacy, Terms, footer, /contact | CIN if Pvt Ltd, LLPIN if LLP. |
+| 🚩 `{{REGISTERED_ADDRESS}}` | `entity.registeredAddress` | Privacy, Terms, Refund, footer, /contact | Registered office as filed with the MCA. |
+| 🚩 `{{GSTIN}}` | `gst.gstin` | Terms, footer, /contact | Registration itself is confirmed; the number is not. |
+| 🚩 `{{BUSINESS_EMAIL}}` | `contact.businessEmail` | Everywhere an address appears | **Until this is set, every email affordance on the site is a link to `/contact` instead.** Nothing is broken by leaving it — see §3. |
+| 🚩 `{{GRIEVANCE_OFFICER_NAME}}` | `grievanceOfficer.name` | Privacy, Terms, Refund, footer, /contact | Required by DPDP s.13. |
+| 🚩 `{{GRIEVANCE_EMAIL}}` | `grievanceOfficer.email` | Privacy, Terms, Refund, footer, /contact | Should be a role address, not a personal one. |
 | `{{GRIEVANCE_ACK_DAYS}}` | `grievanceOfficer.acknowledgeDays` | Privacy, Refund | **Recommended: 2 working days.** |
 | `{{GRIEVANCE_RESOLVE_DAYS}}` | `grievanceOfficer.resolveDays` | Privacy | **Recommended: 30 days.** |
 | `{{RIGHTS_RESPONSE_DAYS}}` | `rightsResponseDays` | Privacy | **Recommended: 30 days.** |
@@ -111,20 +126,18 @@ not a default I should take. Scheduled for Phase 6 on your word.
 
 ## 3. Known exposure still live
 
-### 3.1 `public/resume.pdf` publishes a personal Gmail — **found during Phase 1**
+### 3.1 OWNER ACTION — `public/resume.pdf` publishes a personal Gmail
 
-The audit flagged this file as unchecked. It is now checked, and it contains a
-personal `@gmail.com` address (a *different* one from the address that was in
-the HTML). The file is linked from the footer, `/about` and the home page, and
-is directly downloadable.
+**Owner is replacing this file** with a version containing no personal email
+address. Until that lands, `npm run check:legal` prints a warning on every build.
 
-The HTML exposure is fixed; **this one is not**, because rewriting your résumé
-is not my call. `npm run check:legal` now prints a warning about it on every
-build so it cannot be forgotten.
+The file is linked from the footer, `/about` and the home page, and is directly
+downloadable. It contains a personal `@gmail.com` address — a *different* one
+from the address that used to be in the HTML. The HTML exposure is fixed; this
+one is not, and it is not mine to fix.
 
-**Options:** replace the PDF with one carrying the business address; remove the
-address from the résumé entirely and point at `/contact`; or accept it as a
-deliberate professional disclosure. Your call.
+When the replacement is dropped in, run `npm run check:legal` — the warning
+disappears on its own, no code change needed.
 
 ### 3.2 Unknown-provenance images still in the repo
 
@@ -184,3 +197,130 @@ against the DPDP Act 2023 and its Rules, the Consumer Protection (E-Commerce)
 Rules 2020, and the CCPA Dark Patterns Guidelines 2023 — particularly the
 limitation-of-liability clause in the Terms and the non-refundable cases in the
 Refund Policy, which are the two places a consumer forum would look first.
+
+---
+
+## 7. Environment changes made during this work (restore these afterwards)
+
+Exactly what was changed, so it can be put back.
+
+### 7.1 `auto-commit.sh` disabled
+
+```
+.claude/helpers/auto-commit.sh  →  .claude/helpers/auto-commit.sh.disabled
+```
+
+Restore with:
+
+```bash
+git mv .claude/helpers/auto-commit.sh.disabled .claude/helpers/auto-commit.sh
+```
+
+Nothing else was touched — no hook entry was removed, because **there was never
+one to remove.** See §7.2.
+
+### 7.2 What actually created the junk commits — correction
+
+An earlier report attributed commit `a2835c1 ("001")` to `auto-commit.sh`. That
+was an inference from the helper's existence, not evidence, and it was wrong:
+
+- Nothing in `.claude/settings.json` invokes `auto-commit.sh`. Every hook there
+  routes to `hook-handler.cjs` or `auto-memory-hook.mjs`.
+- `hook-handler.cjs` contains **zero** references to git.
+- `"001"` matches none of the helper message formats (`auto-commit.sh` uses
+  `"$COMMIT_PREFIX: Auto-commit from Claude Code"`; the checkpoint hooks use
+  `"🔖 Checkpoint: …"`).
+
+Renaming the helper is a harmless precaution and was done as instructed, but
+**it is probably not the source, and the real source is still unidentified.**
+Watch for another commit appearing that neither of us made.
+
+What *is* confirmed: **empty files with names derived from shell fragments keep
+appearing in the repo root** — `category.id`, `entry.category`, `footer`, `{,`,
+`HTTP`, `ids.indexOf(id)`, `$(git`, `" !m.noindex)"`. Two of them reached a
+commit because `git add -A` swept them up. All staging is now done with explicit
+paths, never `-A`. If you see more of these, delete them; they are artifacts,
+not project files.
+
+---
+
+## 8. Git history purge — commands for you to run at the end
+
+**Do not run these until every phase is finished and reviewed.** They rewrite
+history and require a force-push, which is yours to do, not mine.
+
+Requires [`git-filter-repo`](https://github.com/newren/git-filter-repo)
+(`pip install git-filter-repo`). Work on a **fresh clone**, which is what
+filter-repo expects:
+
+```bash
+git clone --no-local <repo-url> portfolio-purge
+cd portfolio-purge
+```
+
+### 8.1 Remove the files
+
+```bash
+git filter-repo --invert-paths \
+  --path 'assets/fonts/fontsfree-net-thehistoriademo-webfont.woff' \
+  --path 'assets/fonts/fontsfree-net-thehistoriademo-webfont.woff2' \
+  --path 'legacy/assets/fonts/fontsfree-net-thehistoriademo-webfont.woff' \
+  --path 'legacy/assets/fonts/fontsfree-net-thehistoriademo-webfont.woff2' \
+  --path 'legacy/assets/img/download.jfif' \
+  --path ' !m.noindex)' \
+  --path 'HTTP' \
+  --path 'ids.indexOf(id)' \
+  --path '$(git' \
+  --path 'category.id' \
+  --path 'entry.category' \
+  --path 'footer' \
+  --path '{,'
+```
+
+The last six are the shell-artifact files from §7.2. Harmless, but there is no
+reason to carry them.
+
+### 8.2 Redact the personal email addresses from all historical file contents
+
+Create `replacements.txt` (this file is a local scratch file — do **not** commit
+it, it contains the addresses you are trying to remove):
+
+```
+dudukuruyuvaraj55@gmail.com==>REDACTED@example.invalid
+dudukuruyuvaraj@gmail.com==>REDACTED@example.invalid
+```
+
+Then:
+
+```bash
+git filter-repo --replace-text replacements.txt
+rm replacements.txt
+```
+
+> **Note:** this rewrites *text* files. `public/resume.pdf` is a binary whose
+> streams are compressed, so `--replace-text` will not reliably reach the
+> address inside it. To purge that, either drop the PDF from history entirely
+> (`--invert-paths --path public/resume.pdf`) and re-add the clean replacement
+> as a new commit, or accept that old revisions of the PDF still contain it.
+
+### 8.3 Optional — also purge the phone number
+
+The number was never in a committed HTML file, only in `src/data/profile.js`,
+which is text, so `--replace-text` does reach it. Add to `replacements.txt`:
+
+```
++91 63050 17247==>REDACTED
+https://wa.me/916305017247==>REDACTED
+```
+
+### 8.4 Afterwards
+
+```bash
+git remote add origin <repo-url>     # filter-repo drops the remote by design
+git push --force --all
+git push --force --tags
+```
+
+Then have anyone with a clone re-clone; their old history will not merge.
+Old objects may survive on GitHub until garbage collection — for a hard
+guarantee, ask GitHub Support to run `gc`, or recreate the repository.
